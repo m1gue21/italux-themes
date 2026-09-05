@@ -1263,6 +1263,24 @@
         "id": "sold_out_badge_color_scheme",
         "label": "t:settings_schema.badges.settings.sold_out_badge_color_scheme.label",
         "default": "scheme-3"
+      },
+      {
+        "type": "header",
+        "content": "Badges personalizados Italux"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_offer_badge",
+        "label": "Mostrar badge \"OFERTA\"",
+        "info": "Etiqueta superior en productos con descuento.",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_savings_badge",
+        "label": "Mostrar badge \"AHORRAS\"",
+        "info": "Etiqueta inferior con el monto ahorrado en productos con descuento.",
+        "default": true
       }
     ]
   },

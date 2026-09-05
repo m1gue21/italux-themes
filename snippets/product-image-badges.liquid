@@ -7,11 +7,28 @@
   - show_sold_out: {Boolean} Muestra badge de agotado (default: true)
   - show_savings: {Boolean} Muestra badge de ahorro (default: true)
   - show_offer: {Boolean} Muestra badge OFERTA arriba (default: true)
+
+  Los badges OFERTA y AHORRAS se pueden apagar globalmente desde
+  Personalizar > Configuracion > Insignias.
 {% endcomment %}
 {%- liquid
-  assign show_sold_out = show_sold_out | default: true
-  assign show_savings = show_savings | default: true
-  assign show_offer = show_offer | default: true
+  comment
+    allow_false evita que un `false` explicito del render caiga en el default.
+  endcomment
+  assign show_sold_out = show_sold_out | default: true, allow_false: true
+  assign show_savings = show_savings | default: true, allow_false: true
+  assign show_offer = show_offer | default: true, allow_false: true
+
+  comment
+    Interruptores globales (Personalizar > Configuracion > Insignias).
+  endcomment
+  unless settings.show_offer_badge
+    assign show_offer = false
+  endunless
+  unless settings.show_savings_badge
+    assign show_savings = false
+  endunless
+
   assign savings_amount = 0
   assign has_savings = false
 
