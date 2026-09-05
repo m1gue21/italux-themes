@@ -271,18 +271,7 @@
         "payment_methods": {
           "type": "payment_methods",
           "settings": {
-            "heading": "Medios de",
-            "heading_accent": "pago",
-            "show_lock": true,
-            "label_left": "Pago seguro",
-            "label_right": "Compra con confianza",
-            "logo_1": "shopify://shop_images/italux_logo_pagani_web.png",
-            "logo_2": "shopify://shop_images/italux_logo_pagani_web.png",
-            "logo_3": "shopify://shop_images/italux_logo_pagani_web.png",
-            "logo_4": "shopify://shop_images/italux_logo_pagani_web.png",
-            "logo_5": "shopify://shop_images/italux_logo_pagani_web.png",
-            "logo_6": "shopify://shop_images/italux_logo_pagani_web.png",
-            "logo_7": "shopify://shop_images/italux_logo_pagani_web.png"
+            "alt": "Medios de pago aceptados: Visa, Mastercard, PayU, PSE, Nequi, Daviplata y Addi"
           }
         }
       },

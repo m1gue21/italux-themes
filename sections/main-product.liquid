@@ -995,83 +995,19 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "Sube los logos en Shopify (Contenido > Archivos) y seleccionalos abajo. Los slots vacios se omiten. El texto alternativo se toma del alt de cada imagen."
+          "content": "Usa la imagen de marca incluida en el theme. Sube una distinta solo si esta tienda maneja otros medios de pago."
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Imagen (opcional)"
         },
         {
           "type": "text",
-          "id": "heading",
-          "label": "Titulo",
-          "default": "Medios de"
-        },
-        {
-          "type": "text",
-          "id": "heading_accent",
-          "label": "Titulo (palabra en dorado)",
-          "default": "pago"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_lock",
-          "label": "Mostrar icono de candado",
-          "default": true
-        },
-        {
-          "type": "text",
-          "id": "label_left",
-          "label": "Rotulo izquierdo",
-          "info": "Se oculta en movil por espacio.",
-          "default": "Pago seguro"
-        },
-        {
-          "type": "text",
-          "id": "label_right",
-          "label": "Rotulo derecho",
-          "info": "Se oculta en movil por espacio.",
-          "default": "Compra con confianza"
-        },
-        {
-          "type": "header",
-          "content": "Logos"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo_1",
-          "label": "Logo 1"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo_2",
-          "label": "Logo 2"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo_3",
-          "label": "Logo 3"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo_4",
-          "label": "Logo 4"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo_5",
-          "label": "Logo 5"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo_6",
-          "label": "Logo 6"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo_7",
-          "label": "Logo 7"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo_8",
-          "label": "Logo 8"
+          "id": "alt",
+          "label": "Texto alternativo",
+          "info": "Lo leen los buscadores y los lectores de pantalla.",
+          "default": "Medios de pago aceptados: Visa, Mastercard, PayU, PSE, Nequi, Daviplata y Addi"
         }
       ]
     },
