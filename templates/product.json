@@ -273,11 +273,21 @@
           "settings": {
             "alt": "Medios de pago aceptados: Visa, Mastercard, PayU, PSE, Nequi, Daviplata y Addi"
           }
+        },
+        "addi_notice": {
+          "type": "addi_notice",
+          "settings": {
+            "text": "Paga con <strong>Addi</strong> en hasta <strong>[cuotas] cuotas</strong>.",
+            "installments": 6,
+            "link_label": "Pide un cupo",
+            "link_url": ""
+          }
         }
       },
       "block_order": [
         "vendor",
         "title",
+        "addi_notice",
         "revie_reviews_por_whatsapp_app_block_GkT7t6",
         "text_ctinyR",
         "price",

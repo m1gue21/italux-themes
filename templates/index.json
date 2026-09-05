@@ -82,7 +82,7 @@
         "image_behavior": "none",
         "show_text_below": false,
         "accessibility_info": "Presentación de diapositivas sobre tu marca",
-        "slide_height_mobile": "adapt"
+        "slide_height_mobile": "small"
       }
     },
     "image_banner": {

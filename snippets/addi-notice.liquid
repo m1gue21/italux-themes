@@ -1,0 +1,56 @@
+{% comment %}
+  Aviso de financiacion con Addi en la pagina de producto.
+
+  Accepts:
+  - block: {Object} Bloque con los settings (required)
+  - product: {Object} Producto actual (optional, para el calculo de cuota)
+
+  Es un aviso estatico del theme, no el widget oficial de Addi: el texto
+  lo controla el comerciante. Si algun dia se instala la app de Addi,
+  este bloque se apaga y se usa el suyo.
+{% endcomment %}
+
+{%- liquid
+  assign cuotas = block.settings.installments | default: 6
+  assign min_total = block.settings.min_amount | times: 100
+  assign price_now = product.selected_or_first_available_variant.price | default: product.price_min | default: 0
+  assign mostrar = true
+  if min_total > 0 and price_now < min_total
+    assign mostrar = false
+  endif
+-%}
+
+{%- if mostrar -%}
+  {{ 'component-addi-notice.css' | asset_url | stylesheet_tag }}
+
+  <div class="addi-notice" {{ block.shopify_attributes }}>
+    <span class="addi-notice__mark">
+      {%- if block.settings.logo != blank -%}
+        {{ block.settings.logo | image_url: width: 160 | image_tag: alt: 'Addi', loading: 'lazy', class: 'addi-notice__logo' }}
+      {%- else -%}
+        <img
+          class="addi-notice__logo"
+          src="{{ 'addi-logo.png' | asset_img_url: '160x' }}"
+          alt="Addi"
+          width="122"
+          height="57"
+          loading="lazy"
+          decoding="async"
+        >
+      {%- endif -%}
+    </span>
+
+    <span class="addi-notice__text">
+      {{- block.settings.text | replace: '[cuotas]', cuotas -}}
+    </span>
+
+    {%- if block.settings.link_label != blank and block.settings.link_url != blank -%}
+      <a
+        class="addi-notice__link"
+        href="{{ block.settings.link_url }}"
+        target="_blank"
+        rel="noopener nofollow"
+      >{{ block.settings.link_label | escape }}</a>
+    {%- endif -%}
+  </div>
+{%- endif -%}
