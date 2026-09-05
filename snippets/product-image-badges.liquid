@@ -55,6 +55,19 @@
       endif
     endfor
   endif
+
+  comment
+    Se decide antes de pintar: OFERTA y AHORRAS comparten la esquina
+    inferior izquierda y hay que apilarlos si salen los dos.
+  endcomment
+  assign render_offer = false
+  if show_offer and has_savings and savings_amount > 0 and product.available
+    assign render_offer = true
+  endif
+  assign render_savings = false
+  if show_savings and has_savings and savings_amount > 0
+    assign render_savings = true
+  endif
 -%}
 
 {%- if show_sold_out and product.available == false -%}
@@ -66,27 +79,35 @@
   </span>
 {%- endif -%}
 
-{%- if show_offer and has_savings and savings_amount > 0 and product.available -%}
-  <span class="product-overlay-badge product-overlay-badge--offer" id="OfferBadge-{{ product.id }}">
-    OFERTA
-  </span>
-{%- endif -%}
+{%- if render_offer or render_savings -%}
+  {%- comment -%}
+    column-reverse: el primer hijo queda abajo del todo, asi OFERTA se
+    apoya en la esquina y AHORRAS se apila encima.
+  {%- endcomment -%}
+  <div class="product-overlay-badge-stack">
+    {%- if render_offer -%}
+      <span class="product-overlay-badge product-overlay-badge--offer" id="OfferBadge-{{ product.id }}">
+        OFERTA
+      </span>
+    {%- endif -%}
 
-{%- if show_savings and has_savings and savings_amount > 0 -%}
-  <div
-    class="product-overlay-badge product-overlay-badge--savings"
-    aria-label="Ahorras {% if settings.currency_code_enabled %}{{ savings_amount | money_with_currency }}{% else %}{{ savings_amount | money }}{% endif %}"
-  >
-    <span class="product-overlay-badge__icon" aria-hidden="true">
-      {{- 'icon-price-tag.svg' | inline_asset_content -}}
-    </span>
-    <span class="product-overlay-badge__label">AHORRAS</span>
-    <span class="product-overlay-badge__amount">
-      {%- if settings.currency_code_enabled -%}
-        {{ savings_amount | money_with_currency }}
-      {%- else -%}
-        {{ savings_amount | money }}
-      {%- endif -%}
-    </span>
+    {%- if render_savings -%}
+      <div
+        class="product-overlay-badge product-overlay-badge--savings"
+        aria-label="Ahorras {% if settings.currency_code_enabled %}{{ savings_amount | money_with_currency }}{% else %}{{ savings_amount | money }}{% endif %}"
+      >
+        <span class="product-overlay-badge__icon" aria-hidden="true">
+          {{- 'icon-price-tag.svg' | inline_asset_content -}}
+        </span>
+        <span class="product-overlay-badge__label">AHORRAS</span>
+        <span class="product-overlay-badge__amount">
+          {%- if settings.currency_code_enabled -%}
+            {{ savings_amount | money_with_currency }}
+          {%- else -%}
+            {{ savings_amount | money }}
+          {%- endif -%}
+        </span>
+      </div>
+    {%- endif -%}
   </div>
 {%- endif -%}
