@@ -2,28 +2,113 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
-{%- if section.settings.slide_height == 'adapt_image' and section.blocks.first.settings.image != blank -%}
+{%- liquid
+  comment
+    Altura en movil: 'same' deja el comportamiento original de Dawn.
+    Cualquier otro valor la controla aparte del desktop, porque un hero
+    disenado en horizontal casi nunca funciona en una pantalla vertical.
+  endcomment
+  assign mobile_mode = section.settings.slide_height_mobile | default: 'same'
+  assign first_block = section.blocks.first
+  assign mobile_ref = first_block.settings.image_mobile | default: first_block.settings.image
+  assign mobile_fixed = blank
+  case mobile_mode
+    when 'small'
+      assign mobile_fixed = '28rem'
+    when 'medium'
+      assign mobile_fixed = '34rem'
+    when 'large'
+      assign mobile_fixed = '39rem'
+    when 'xlarge'
+      assign mobile_fixed = '52rem'
+    when 'full'
+      assign mobile_fixed = '100svh'
+  endcase
+-%}
+
+{%- if section.settings.slide_height == 'adapt_image' and first_block.settings.image != blank -%}
   {%- style -%}
-    @media screen and (max-width: 749px) {
-      #Slider-{{ section.id }}::before,
-      #Slider-{{ section.id }} .media::before,
-      #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
+    {%- if mobile_mode == 'same' -%}
+      @media screen and (max-width: 749px) {
+        #Slider-{{ section.id }}::before,
+        #Slider-{{ section.id }} .media::before,
+        #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+          padding-bottom: {{ 1 | divided_by: first_block.settings.image.aspect_ratio | times: 100 }}%;
+          content: '';
+          display: block;
+        }
       }
-    }
+    {%- endif -%}
 
     @media screen and (min-width: 750px) {
       #Slider-{{ section.id }}::before,
       #Slider-{{ section.id }} .media::before {
-        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
+        padding-bottom: {{ 1 | divided_by: first_block.settings.image.aspect_ratio | times: 100 }}%;
         content: '';
         display: block;
       }
     }
   {%- endstyle -%}
 {%- endif -%}
+
+{%- if mobile_mode == 'adapt' and mobile_ref != blank -%}
+  {%- comment -%}
+    Se toma la proporcion de la primera slide para las demas: si cada
+    slide fijara la suya, el carrusel cambiaria de alto en cada paso.
+  {%- endcomment -%}
+  {%- style -%}
+    @media screen and (max-width: 749px) {
+      #Slider-{{ section.id }}::before,
+      #Slider-{{ section.id }} .media::before,
+      #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
+        padding-bottom: {{ 1 | divided_by: mobile_ref.aspect_ratio | times: 100 }}%;
+        content: '';
+        display: block;
+      }
+
+      /* Sin esto, el min-height de banner--small/medium/large de Dawn
+         gana y deja una franja vacia bajo la imagen. */
+      #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content {
+        min-height: 0;
+      }
+
+      #Slider-{{ section.id }}.banner--mobile-bottom .banner__media {
+        height: auto;
+      }
+    }
+  {%- endstyle -%}
+{%- elsif mobile_fixed != blank -%}
+  {%- style -%}
+    @media screen and (max-width: 749px) {
+      #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content {
+        min-height: {{ mobile_fixed }};
+      }
+
+      #Slider-{{ section.id }}.banner--mobile-bottom .banner__media {
+        height: {{ mobile_fixed }};
+      }
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{%- comment -%}
+  Dawn posiciona con `.media > img`. Al envolver en <picture> la imagen
+  deja de ser hijo directo y pierde el object-fit, hay que reponerlo.
+{%- endcomment -%}
+{%- style -%}
+  #Slider-{{ section.id }} .banner__media > picture {
+    display: block;
+  }
+
+  #Slider-{{ section.id }} .banner__media > picture > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+{%- endstyle -%}
 
 <slideshow-component
   class="slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
@@ -136,18 +221,50 @@
                 assign fetch_priority = 'high'
               endif
             -%}
-            {%- if forloop.first %}
-              {{
-                block.settings.image
-                | image_url: width: 3840
-                | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority
-              }}
+            {%- capture desktop_image -%}
+              {%- if forloop.first -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 3840
+                  | image_tag: height: height, sizes: sizes, widths: widths, fetchpriority: fetch_priority
+                }}
+              {%- else -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 3840
+                  | image_tag: loading: 'lazy', height: height, sizes: sizes, widths: widths
+                }}
+              {%- endif -%}
+            {%- endcapture -%}
+
+            {%- if block.settings.image_mobile != blank -%}
+              {%- liquid
+                assign mob = block.settings.image_mobile
+                assign mob_height = mob.width | divided_by: mob.aspect_ratio | round
+              -%}
+              <picture>
+                {%- comment -%}
+                  width/height en el <source> para que el navegador reserve
+                  el alto correcto en movil; sin eso usaria el del <img>,
+                  que tiene otra proporcion, y habria salto de layout.
+                {%- endcomment -%}
+                <source
+                  media="(max-width: 749px)"
+                  srcset="
+                    {{ mob | image_url: width: 375 }} 375w,
+                    {{ mob | image_url: width: 550 }} 550w,
+                    {{ mob | image_url: width: 750 }} 750w,
+                    {{ mob | image_url: width: 1100 }} 1100w,
+                    {{ mob | image_url: width: 1500 }} 1500w
+                  "
+                  sizes="100vw"
+                  width="{{ mob.width }}"
+                  height="{{ mob_height }}"
+                >
+                {{ desktop_image }}
+              </picture>
             {%- else -%}
-              {{
-                block.settings.image
-                | image_url: width: 3840
-                | image_tag: loading: 'lazy', height: height, sizes: sizes, widths: widths
-              }}
+              {{ desktop_image }}
             {%- endif -%}
           {%- else -%}
             {%- assign placeholder_slide = forloop.index | modulo: 2 -%}
@@ -267,7 +384,10 @@
   "tag": "section",
   "class": "section",
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": [
+      "header",
+      "footer"
+    ]
   },
   "settings": [
     {
@@ -309,6 +429,43 @@
       ],
       "default": "medium",
       "label": "t:sections.slideshow.settings.slide_height.label"
+    },
+    {
+      "type": "select",
+      "id": "slide_height_mobile",
+      "label": "Altura en móvil",
+      "info": "Un hero horizontal casi nunca funciona en pantalla vertical. Si subes imágenes de móvil, «Adaptar a la imagen» las muestra completas sin recortar.",
+      "options": [
+        {
+          "value": "same",
+          "label": "Igual que en escritorio"
+        },
+        {
+          "value": "adapt",
+          "label": "Adaptar a la imagen (sin recorte)"
+        },
+        {
+          "value": "small",
+          "label": "Pequeña (280 px)"
+        },
+        {
+          "value": "medium",
+          "label": "Mediana (340 px)"
+        },
+        {
+          "value": "large",
+          "label": "Grande (390 px)"
+        },
+        {
+          "value": "xlarge",
+          "label": "Muy grande (520 px)"
+        },
+        {
+          "value": "full",
+          "label": "Pantalla completa"
+        }
+      ],
+      "default": "same"
     },
     {
       "type": "select",
@@ -396,6 +553,12 @@
           "label": "t:sections.slideshow.blocks.slide.settings.image.label"
         },
         {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Imagen para móvil (opcional)",
+          "info": "Recomendado en vertical (4:5 o 9:16). Si se deja vacío se usa la de escritorio."
+        },
+        {
           "type": "range",
           "id": "image_overlay_opacity",
           "min": 0,
@@ -452,12 +615,12 @@
         {
           "type": "header",
           "content": "t:sections.slideshow.blocks.slide.settings.header_button.content"
-        },        
+        },
         {
           "type": "text",
           "id": "button_label",
           "default": "t:sections.slideshow.blocks.slide.settings.button_label.default",
-          "label": "t:sections.slideshow.blocks.slide.settings.button_label.label", 
+          "label": "t:sections.slideshow.blocks.slide.settings.button_label.label",
           "info": "t:sections.slideshow.blocks.slide.settings.button_label.info"
         },
         {
@@ -474,7 +637,7 @@
         {
           "type": "header",
           "content": "t:sections.slideshow.blocks.slide.settings.header_layout.content"
-        },         
+        },
         {
           "type": "checkbox",
           "id": "show_text_box",
@@ -564,7 +727,7 @@
           ],
           "default": "center",
           "label": "t:sections.slideshow.blocks.slide.settings.text_alignment_mobile.label"
-        },        
+        },
         {
           "type": "color_scheme",
           "id": "color_scheme",
