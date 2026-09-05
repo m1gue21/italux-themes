@@ -1,0 +1,191 @@
+/* Franja de medios de pago (bloque de la pagina de producto)
+
+   Se usa @container en vez de @media: el bloque vive en la columna de
+   info del producto, que mide ~550px incluso en pantallas grandes, asi
+   que el viewport no dice nada util sobre el espacio disponible. */
+.pm-banner {
+  --pm-gold: #c9a227;
+  --pm-gold-soft: #e8d3a3;
+  --pm-ink: #2b2620;
+  --pm-muted: #8a8178;
+
+  /* Solo contenedor: un elemento no puede consultar su propio
+     container query, por eso el marco visual va en el hijo. */
+  container-type: inline-size;
+  container-name: pmbanner;
+  margin: 1.6rem 0;
+}
+
+.pm-banner__frame {
+  padding: 2px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, var(--pm-gold-soft), var(--pm-gold) 45%, var(--pm-gold-soft));
+}
+
+.pm-banner__inner {
+  border-radius: inherit;
+  background: #fbf8f3;
+  padding: 1.15rem 1rem 1.25rem;
+}
+
+/* --- Cabecera --- */
+.pm-banner__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 0.95rem;
+}
+
+.pm-banner__side {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pm-muted);
+  white-space: nowrap;
+}
+
+.pm-banner__side--right {
+  justify-content: flex-end;
+}
+
+/* Los rotulos solo caben cuando el contenedor es ancho. */
+.pm-banner__side-text {
+  display: none;
+}
+
+.pm-banner__rule {
+  flex: 1;
+  min-width: 1.25rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pm-gold-soft), transparent);
+}
+
+.pm-banner__lock {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: var(--pm-gold);
+}
+
+.pm-banner__title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--pm-ink);
+  white-space: nowrap;
+}
+
+.pm-banner__accent {
+  color: var(--pm-gold);
+}
+
+.pm-banner__spark {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: var(--pm-gold);
+}
+
+/* --- Logos: 3 por fila en el contenedor mas angosto --- */
+.pm-banner__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pm-banner__logo {
+  flex: 0 1 calc(33.333% - 0.4rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0.5rem 0.6rem;
+  background: #fff;
+  border-radius: 11px;
+  box-shadow: 0 1px 3px rgba(43, 38, 32, 0.09);
+}
+
+.pm-banner__logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 30px;
+  object-fit: contain;
+}
+
+/* --- Contenedor mediano: 4 por fila --- */
+@container pmbanner (min-width: 460px) {
+  .pm-banner__logo {
+    flex-basis: calc(25% - 0.45rem);
+    min-height: 60px;
+    border-radius: 12px;
+  }
+
+  .pm-banner__logo img {
+    max-height: 34px;
+  }
+
+  .pm-banner__title {
+    font-size: 1.4rem;
+  }
+}
+
+/* --- Contenedor ancho: todos en una fila, como el diseno original --- */
+@container pmbanner (min-width: 720px) {
+  .pm-banner__frame {
+    border-radius: 46px;
+  }
+
+  .pm-banner__inner {
+    padding: 1.35rem 1.6rem 1.5rem;
+  }
+
+  .pm-banner__head {
+    gap: 0.85rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .pm-banner__side-text {
+    display: inline;
+  }
+
+  .pm-banner__lock,
+  .pm-banner__spark {
+    width: 17px;
+    height: 17px;
+  }
+
+  .pm-banner__title {
+    font-size: 1.6rem;
+    gap: 0.7rem;
+  }
+
+  .pm-banner__logo {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 64px;
+    padding: 0.6rem 0.85rem;
+    border-radius: 13px;
+  }
+
+  .pm-banner__logo img {
+    max-height: 38px;
+  }
+}

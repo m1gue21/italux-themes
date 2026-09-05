@@ -1,0 +1,86 @@
+{% comment %}
+  Franja de medios de pago.
+
+  Accepts:
+  - block: {Object} Bloque con los settings (required)
+
+  Los logos salen de los slots logo_1..logo_8. Si no hay ninguno cargado
+  no se renderiza nada, para no dejar un recuadro vacio en produccion.
+  El texto alternativo se toma del alt de cada imagen en Shopify.
+{% endcomment %}
+
+{%- liquid
+  assign logo_keys = 'logo_1,logo_2,logo_3,logo_4,logo_5,logo_6,logo_7,logo_8' | split: ','
+  assign logo_count = 0
+  for key in logo_keys
+    if block.settings[key] != blank
+      assign logo_count = logo_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if logo_count > 0 -%}
+  {{ 'component-payment-methods.css' | asset_url | stylesheet_tag }}
+
+  <div class="pm-banner" {{ block.shopify_attributes }}>
+    <div class="pm-banner__frame">
+      <div class="pm-banner__inner">
+      <div class="pm-banner__head">
+        <span class="pm-banner__side pm-banner__side--left">
+          {%- if block.settings.show_lock -%}
+            <svg class="pm-banner__lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="4" y="10" width="16" height="11" rx="2"/>
+              <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+            </svg>
+          {%- endif -%}
+          {%- if block.settings.label_left != blank -%}
+            <span class="pm-banner__side-text">{{ block.settings.label_left | escape }}</span>
+          {%- endif -%}
+          <span class="pm-banner__rule" aria-hidden="true"></span>
+        </span>
+
+        <h2 class="pm-banner__title">
+          <svg class="pm-banner__spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6)"/>
+          </svg>
+          <span>
+            {{- block.settings.heading | escape -}}
+            {%- if block.settings.heading_accent != blank -%}
+              <span class="pm-banner__accent"> {{ block.settings.heading_accent | escape }}</span>
+            {%- endif -%}
+          </span>
+          <svg class="pm-banner__spark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0c.6 5.9 5.5 10.8 11.4 11.4v1.2C17.5 13.2 12.6 18.1 12 24h-1.2C10.2 18.1 5.3 13.2-.6 12.6v-1.2C5.3 10.8 10.2 5.9 10.8 0z" transform="translate(0.6)"/>
+          </svg>
+        </h2>
+
+        <span class="pm-banner__side pm-banner__side--right">
+          <span class="pm-banner__rule" aria-hidden="true"></span>
+          {%- if block.settings.label_right != blank -%}
+            <span class="pm-banner__side-text">{{ block.settings.label_right | escape }}</span>
+          {%- endif -%}
+        </span>
+      </div>
+
+      <ul class="pm-banner__logos" role="list">
+        {%- for key in logo_keys -%}
+          {%- assign logo = block.settings[key] -%}
+          {%- if logo != blank -%}
+            <li class="pm-banner__logo">
+              {{
+                logo
+                | image_url: width: 300
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '100, 150, 200, 300',
+                  sizes: '(min-width: 750px) 150px, 90px',
+                  alt: logo.alt
+              }}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

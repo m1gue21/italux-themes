@@ -267,6 +267,23 @@
             "label_whatsapp": "Reseñas por WhatsApp con",
             "label_files": "archivos"
           }
+        },
+        "payment_methods": {
+          "type": "payment_methods",
+          "settings": {
+            "heading": "Medios de",
+            "heading_accent": "pago",
+            "show_lock": true,
+            "label_left": "Pago seguro",
+            "label_right": "Compra con confianza",
+            "logo_1": "shopify://shop_images/italux_logo_pagani_web.png",
+            "logo_2": "shopify://shop_images/italux_logo_pagani_web.png",
+            "logo_3": "shopify://shop_images/italux_logo_pagani_web.png",
+            "logo_4": "shopify://shop_images/italux_logo_pagani_web.png",
+            "logo_5": "shopify://shop_images/italux_logo_pagani_web.png",
+            "logo_6": "shopify://shop_images/italux_logo_pagani_web.png",
+            "logo_7": "shopify://shop_images/italux_logo_pagani_web.png"
+          }
         }
       },
       "block_order": [
@@ -279,6 +296,7 @@
         "quantity_selector",
         "buy_buttons",
         "dije_upsell",
+        "payment_methods",
         "product_reviews_carousel",
         "review_card_1",
         "review_card_2",
