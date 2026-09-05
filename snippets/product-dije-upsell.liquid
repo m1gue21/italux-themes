@@ -1,0 +1,132 @@
+{% comment %}
+  Muestra dijes sugeridos en cadenas caballero y combos caballero.
+
+  Accepts:
+  - product: {Object} Producto actual
+  - block: {Object} Bloque de sección con settings
+  - section_id: {String} ID de la sección
+{% endcomment %}
+
+{%- liquid
+  assign cadenas_caballero_handle = block.settings.cadenas_caballero_handle | default: 'cadenas-caballero'
+  assign combos_caballero_handle = block.settings.combos_caballero_handle | default: 'combos-caballero'
+  assign cadenas_dama_handle = block.settings.cadenas_dama_handle | default: 'cadenas-dama'
+  assign combos_dama_handle = block.settings.combos_dama_handle | default: 'combos-dama'
+  assign combos_exclude_handle = block.settings.combos_exclude_handle | default: ''
+  assign cadenas_hombre_dije_handle = block.settings.cadenas_hombre_dije_handle | default: 'cadenas-hombre-dije'
+  assign dije_caballero_handle = block.settings.dije_caballero_handle | default: 'dijes'
+  assign dije_fallback_handle = block.settings.dije_fallback_handle | default: 'dijes'
+  assign show_upsell = false
+  assign is_dije_product = false
+  assign in_allowed_collection = false
+  assign in_excluded_collection = false
+  assign slider_id = 'Slider-dije-' | append: block.id
+  assign visible_count = 0
+  assign add_button_label = block.settings.add_button_label | default: 'Añadir'
+  assign sold_out_label = 'products.product.sold_out' | t
+
+  for collection in product.collections
+    if collection.handle == dije_caballero_handle or collection.handle == dije_fallback_handle
+      assign is_dije_product = true
+      break
+    endif
+  endfor
+
+  unless is_dije_product
+    for collection in product.collections
+      if collection.handle == cadenas_caballero_handle or collection.handle == combos_caballero_handle
+        assign in_allowed_collection = true
+      endif
+
+      if collection.handle == cadenas_dama_handle or collection.handle == combos_dama_handle or collection.handle == cadenas_hombre_dije_handle
+        assign in_excluded_collection = true
+      endif
+
+      if combos_exclude_handle != blank and collection.handle == combos_exclude_handle and in_allowed_collection == false
+        assign in_excluded_collection = true
+      endif
+    endfor
+
+    if in_allowed_collection and in_excluded_collection == false
+      assign show_upsell = true
+    endif
+  endunless
+
+  assign dije_collection = blank
+  if show_upsell
+    assign dije_collection = collections[dije_caballero_handle]
+    if dije_collection == blank or dije_collection.products_count == 0
+      assign dije_collection = collections[dije_fallback_handle]
+    endif
+  endif
+
+  if dije_collection != blank
+    for dije_product in dije_collection.products limit: block.settings.product_limit
+      assign dije_title_downcase = dije_product.title | downcase
+      unless dije_product.id == product.id
+        unless dije_title_downcase contains 'cadena'
+          assign visible_count = visible_count | plus: 1
+        endunless
+      endunless
+    endfor
+  endif
+-%}
+
+{%- if show_upsell and dije_collection != blank and visible_count > 0 -%}
+  <dije-upsell-picker
+    class="dije-upsell"
+    aria-label="{{ block.settings.heading | escape }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="dije-upsell__header">
+      <p class="dije-upsell__eyebrow">{{ block.settings.subheading | escape }}</p>
+      <h2 class="dije-upsell__heading h5">{{ block.settings.heading | escape }}</h2>
+    </div>
+
+    <div class="dije-upsell__slider">
+      <ul
+        id="{{ slider_id }}"
+        class="dije-upsell__track list-unstyled"
+        role="list"
+        aria-label="{{ block.settings.heading | escape }}"
+      >
+        {%- assign card_index = 0 -%}
+        {%- for dije_product in dije_collection.products limit: block.settings.product_limit -%}
+          {%- assign dije_title_downcase = dije_product.title | downcase -%}
+          {%- if dije_product.id == product.id or dije_title_downcase contains 'cadena' -%}
+            {%- continue -%}
+          {%- endif -%}
+          <li
+            id="Slide-dije-{{ block.id }}-{{ card_index }}"
+            class="dije-upsell__slide"
+          >
+            {% render 'dije-upsell-card', dije_product: dije_product, card_index: card_index %}
+          </li>
+          {%- assign card_index = card_index | plus: 1 -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <div class="dije-upsell__action" hidden>
+      <p class="dije-upsell__action-title"></p>
+      <div class="dije-upsell__variants"></div>
+      <button
+        type="button"
+        class="dije-upsell__add-button button button--full-width button--secondary"
+        data-add-label="{{ add_button_label | escape }}"
+        data-sold-out-label="{{ sold_out_label | escape }}"
+        disabled
+      >
+        <span class="dije-upsell__add-button-text">{{ add_button_label | escape }}</span>
+        {%- render 'loading-spinner' -%}
+      </button>
+    </div>
+
+    <p class="dije-upsell__error caption" hidden></p>
+  </dije-upsell-picker>
+
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'component-savings-badge.css' | asset_url | stylesheet_tag }}
+  {{ 'component-dije-upsell.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'dije-upsell.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}

@@ -1,0 +1,688 @@
+{%- comment -%}
+  Carrusel de reseñas para página de producto (debajo del botón comprar).
+  Estilo: "Ellas ya eligieron...", scroll horizontal, foto + estrellas + nombre + check + texto corto.
+{%- endcomment -%}
+{%- assign blocks = blocks | default: null -%}
+{%- if blocks != blank and blocks.size > 0 -%}
+<div class="product-reviews-carousel">
+  {%- if subtext != blank -%}
+    <p class="product-reviews-carousel__subtext">
+      <svg class="product-reviews-carousel__lock" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+      {{ subtext }}
+    </p>
+  {%- endif -%}
+  {%- if heading != blank -%}
+    <h3 class="product-reviews-carousel__heading">{{ heading }}</h3>
+  {%- endif -%}
+  <div class="product-reviews-carousel__mask" role="region" aria-label="Reseñas de clientes">
+    <div class="product-reviews-carousel__track">
+      {%- for copy in (1..2) -%}
+        {%- for block in blocks -%}
+          {%- assign img_src = '' -%}
+          {%- if block.settings.image_url != blank -%}{%- assign img_src = block.settings.image_url -%}{%- elsif block.settings.image != blank -%}{%- assign img_src = block.settings.image | image_url: width: 600 -%}{%- endif -%}
+          <article class="product-reviews-carousel__card{% unless block.settings.image_url != blank or block.settings.image != blank %} product-reviews-carousel__card--no-image{% endunless %}{% if copy == 1 %} product-reviews-carousel__card--clickable{% endif %}"
+            {% if copy == 1 %}
+              {{ block.shopify_attributes }}
+              role="button"
+              tabindex="0"
+              data-review-name="{{ block.settings.author_name | default: 'Cliente' | escape }}"
+              data-review-content="{{ block.settings.content | default: 'Excelente producto.' | escape }}"
+              data-review-rating="{{ block.settings.rating | default: 5 }}"
+              data-review-verified="{{ block.settings.verified }}"
+              data-review-image="{{ img_src }}"
+              data-review-handle="{{ block.settings.instagram_handle | default: '' | escape }}"
+              data-review-date="{{ block.settings.date | default: 'Hace poco' | escape }}"
+              data-review-product-url="{{ block.settings.product_url | default: '' }}"
+              data-review-product-title="{{ block.settings.product_title | default: '' | escape }}"
+            {% endif %}>
+            {%- if block.settings.image_url != blank or block.settings.image != blank -%}
+              <div class="product-reviews-carousel__card-header">
+                {%- if block.settings.image_url != blank -%}
+                  <img src="{{ block.settings.image_url }}" alt="" width="200" height="120" loading="lazy">
+                {%- else -%}
+                  <img src="{{ block.settings.image | image_url: width: 400 }}" alt="" width="200" height="120" loading="lazy">
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            <div class="product-reviews-carousel__card-body">
+              <div class="product-reviews-carousel__stars-badge" aria-hidden="true">
+                <span class="product-reviews-carousel__stars">
+                  {%- assign r = block.settings.rating | default: 5 | round -%}
+                  {%- for i in (1..5) -%}
+                    {%- if i <= r -%}
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    {%- else -%}
+                      <svg class="product-reviews-carousel__star-empty" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </span>
+              </div>
+              <p class="product-reviews-carousel__name">
+                {{ block.settings.author_name | default: 'Cliente' }}
+                {%- if block.settings.verified -%}
+                  <span class="product-reviews-carousel__check" aria-label="Verificado">
+                    <img src="{{ 'verified.png' | asset_url }}" alt="" width="18" height="18" loading="lazy" class="product-reviews-carousel__check-img">
+                  </span>
+                {%- endif -%}
+              </p>
+              <p class="product-reviews-carousel__content">{{ block.settings.content | default: 'Excelente producto.' | truncate: 70 }}</p>
+            </div>
+          </article>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div id="product-reviews-modal" class="product-reviews-modal" aria-hidden="true" role="dialog" aria-labelledby="product-reviews-modal-title" aria-modal="true">
+    <div class="product-reviews-modal__backdrop" data-modal-close></div>
+    <div class="product-reviews-modal__container">
+      <div class="product-reviews-modal__left">
+        <button type="button" class="product-reviews-modal__close" data-modal-close aria-label="Cerrar">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+        <div class="product-reviews-modal__image-wrap">
+          <img id="product-reviews-modal-image" class="product-reviews-modal__image" src="" alt="" width="400" height="400" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="product-reviews-modal__right">
+        <header class="product-reviews-modal__header">
+          <div class="product-reviews-modal__name-row">
+            <h2 id="product-reviews-modal-title" class="product-reviews-modal__name"></h2>
+            <div class="product-reviews-modal__instagram-badge" id="product-reviews-modal-verified-wrap">
+              <img src="{{ 'verified.png' | asset_url }}" alt="" width="20" height="20" class="product-reviews-modal__verified-img" aria-hidden="true">
+              <span class="product-reviews-modal__at" aria-hidden="true">@</span>
+              <span class="product-reviews-modal__handle" id="product-reviews-modal-handle"></span>
+              <span class="product-reviews-modal__verified-fallback" id="product-reviews-modal-verified-fallback">Verificado</span>
+            </div>
+          </div>
+          <div class="product-reviews-modal__meta-row">
+            <div class="product-reviews-modal__stars" id="product-reviews-modal-stars" aria-hidden="true"></div>
+            <time class="product-reviews-modal__date" id="product-reviews-modal-date"></time>
+          </div>
+        </header>
+        <p class="product-reviews-modal__review-text" id="product-reviews-modal-content"></p>
+        <div class="product-reviews-modal__product" id="product-reviews-modal-product" hidden>
+          <a class="product-reviews-modal__product-link" id="product-reviews-modal-product-link" href="">
+            <span class="product-reviews-modal__product-title" id="product-reviews-modal-product-title"></span>
+            <span class="product-reviews-modal__product-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+              Ver producto
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .product-reviews-carousel {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(var(--color-foreground), 0.1);
+    overflow-x: hidden;
+    width: 100%;
+  }
+  .product-reviews-carousel__subtext {
+    font-size: 0.85rem;
+    color: rgba(var(--color-foreground), 0.7);
+    margin: 0 0 0.25rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .product-reviews-carousel__lock {
+    flex-shrink: 0;
+  }
+  .product-reviews-carousel__heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: rgb(var(--color-foreground));
+    line-height: 1.3;
+  }
+  .product-reviews-carousel__mask {
+    overflow: hidden;
+    margin: 0 -1.5rem;
+    padding: 0.5rem 1.5rem;
+  }
+  .product-reviews-carousel__track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    padding: 0 0.5rem 0.5rem 0;
+    animation: product-reviews-carousel-marquee 45s linear infinite;
+  }
+  .product-reviews-carousel__track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes product-reviews-carousel-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .product-reviews-carousel__card--clickable {
+    cursor: pointer;
+  }
+  .product-reviews-carousel__card {
+    flex-shrink: 0;
+    width: 156px;
+    background: #f8f6f3;
+    border: none;
+    border-radius: 18px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    box-shadow: none;
+    overflow: hidden;
+  }
+  .product-reviews-carousel__card-header {
+    width: 100%;
+    height: 100px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 18px 18px 0 0;
+    background: #e8e4df;
+  }
+  .product-reviews-carousel__card-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .product-reviews-carousel__card-body {
+    position: relative;
+    padding: 1rem 1rem 1rem;
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+  }
+  .product-reviews-carousel__card--no-image .product-reviews-carousel__card-body {
+    padding-top: 1rem;
+  }
+  .product-reviews-carousel__card--no-image .product-reviews-carousel__stars-badge {
+    margin-top: 0;
+  }
+  .product-reviews-carousel__stars-badge {
+    position: relative;
+    z-index: 2;
+    margin-top: -20px;
+    background: #fff;
+    border-radius: 999px;
+    padding: 0.4rem 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    flex-shrink: 0;
+  }
+  .product-reviews-carousel__stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    color: #e5b318;
+  }
+  .product-reviews-carousel__stars svg {
+    width: 16px;
+    height: 16px;
+  }
+  .product-reviews-carousel__star-empty {
+    color: #e5e5e5;
+  }
+  .product-reviews-carousel__name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .product-reviews-carousel__check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 0;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+  }
+  .product-reviews-carousel__check-img {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+    display: block;
+    object-fit: contain;
+    vertical-align: middle;
+  }
+  .product-reviews-carousel__content {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.45;
+    margin: 0;
+    color: #444;
+    max-width: 92%;
+    flex: 1;
+    min-height: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    align-self: center;
+  }
+  @media (min-width: 750px) {
+    .product-reviews-carousel__card {
+      width: 168px;
+    }
+    .product-reviews-carousel__card-header {
+      height: 110px;
+    }
+    .product-reviews-carousel__card-body {
+      padding: 1rem 1.1rem 1.1rem;
+      padding-top: 1.5rem;
+    }
+    .product-reviews-carousel__stars-badge {
+      margin-top: -22px;
+    }
+    .product-reviews-carousel__card--no-image .product-reviews-carousel__stars-badge {
+      margin-top: 0;
+    }
+    .product-reviews-carousel__content {
+      -webkit-line-clamp: 4;
+      max-width: 90%;
+    }
+  }
+
+  /* Modal: overlay + container */
+  .product-reviews-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    box-sizing: border-box;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .product-reviews-modal[aria-hidden="false"] {
+    display: flex;
+  }
+  .product-reviews-modal[aria-hidden="false"] .product-reviews-modal__backdrop {
+    opacity: 1;
+    animation: product-reviews-modal-backdrop-in 0.35s ease-out forwards;
+    box-shadow: inset 0 0 160px 30px rgba(0, 0, 0, 0.4);
+  }
+  .product-reviews-modal[aria-hidden="false"] .product-reviews-modal__container {
+    animation: product-reviews-modal-scale-in 0.35s ease-out forwards;
+  }
+  @keyframes product-reviews-modal-backdrop-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes product-reviews-modal-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .product-reviews-modal__backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  /* Container: two-column layout on desktop */
+  .product-reviews-modal__container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 720px;
+    min-height: 0;
+    max-height: min(85vh, 90dvh);
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    flex-shrink: 0;
+  }
+  @media (min-width: 750px) {
+    .product-reviews-modal__container {
+      flex-direction: row;
+      min-height: 450px;
+      max-height: 85vh;
+    }
+  }
+  /* Left panel: imagen + botón cerrar (marrón claro como referencia #E6C8B5) */
+  .product-reviews-modal__left {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    height: 260px;
+    min-height: 260px;
+    max-height: 40vh;
+    background: #E6C8B5;
+    overflow: hidden;
+  }
+  @media (min-width: 750px) {
+    .product-reviews-modal__left {
+      width: 45%;
+      height: auto;
+      min-height: 450px;
+      max-height: none;
+    }
+  }
+  .product-reviews-modal__close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    min-height: 52px;
+    padding: 0;
+    background: transparent;
+    color: #1a1a1a;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .product-reviews-modal__close:hover {
+    background: rgba(0, 0, 0, 0.08);
+    color: #000;
+  }
+  .product-reviews-modal__close:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .product-reviews-modal__close svg {
+    width: 22px;
+    height: 22px;
+    pointer-events: none;
+  }
+  /* Wrapper absoluto para que la imagen siempre quede dentro del panel y no genere top negativo */
+  .product-reviews-modal__image-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-reviews-modal__image {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    position: relative;
+    z-index: 0;
+  }
+  /* Right panel: content (min-height: 0 permite que flex + overflow-y auto funcionen) */
+  .product-reviews-modal__right {
+    flex: 1;
+    min-height: 0;
+    padding: 1.5rem 1.25rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  @media (min-width: 750px) {
+    .product-reviews-modal__right {
+      padding: 2rem 2rem 2rem 1.75rem;
+      width: 55%;
+    }
+  }
+  /* Header: nombre + Verificado en una línea; debajo estrellas + fecha */
+  .product-reviews-modal__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .product-reviews-modal__name-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .product-reviews-modal__name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1a1a1a;
+    line-height: 1.3;
+  }
+  .product-reviews-modal__meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .product-reviews-modal__instagram-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+  }
+  .product-reviews-modal__instagram-badge .product-reviews-modal__handle {
+    font-weight: 600;
+  }
+  .product-reviews-modal__verified-fallback {
+    font-weight: 500;
+  }
+  .product-reviews-modal__instagram-badge[data-has-handle="true"] .product-reviews-modal__verified-fallback {
+    display: none;
+  }
+  .product-reviews-modal__instagram-badge[data-has-handle="false"] .product-reviews-modal__at,
+  .product-reviews-modal__instagram-badge[data-has-handle="false"] .product-reviews-modal__handle {
+    display: none;
+  }
+  .product-reviews-modal__verified-img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .product-reviews-modal__date {
+    font-size: 0.85rem;
+    color: #666;
+    flex-shrink: 0;
+  }
+  .product-reviews-modal__at {
+    color: #1a1a1a;
+    font-weight: 500;
+  }
+  /* Stars */
+  .product-reviews-modal__stars {
+    display: flex;
+    gap: 2px;
+    color: #e5b318;
+  }
+  .product-reviews-modal__stars svg {
+    width: 20px;
+    height: 20px;
+  }
+  .product-reviews-modal__stars .product-reviews-modal__star-empty {
+    color: #e5e5e5;
+  }
+  /* Review text */
+  .product-reviews-modal__review-text {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: #1a1a1a;
+    margin: 0;
+    font-weight: 400;
+  }
+  /* Product section */
+  .product-reviews-modal__product {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .product-reviews-modal__product[hidden] {
+    display: none !important;
+  }
+  .product-reviews-modal__product-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+  }
+  .product-reviews-modal__product-link:hover {
+    opacity: 0.8;
+  }
+  .product-reviews-modal__product-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #1a1a1a;
+  }
+  .product-reviews-modal__product-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    color: #1a1a1a;
+  }
+  .product-reviews-modal__product-btn svg {
+    flex-shrink: 0;
+  }
+</style>
+
+<script>
+  (function() {
+    var modal = document.getElementById('product-reviews-modal');
+    if (!modal) return;
+    var cards = document.querySelectorAll('.product-reviews-carousel__card--clickable');
+    var closeTriggers = modal.querySelectorAll('[data-modal-close]');
+    var modalImg = document.getElementById('product-reviews-modal-image');
+    var modalName = document.getElementById('product-reviews-modal-title');
+    var modalStars = document.getElementById('product-reviews-modal-stars');
+    var modalDate = document.getElementById('product-reviews-modal-date');
+    var modalContent = document.getElementById('product-reviews-modal-content');
+    var modalHandle = document.getElementById('product-reviews-modal-handle');
+    var modalVerifiedWrap = document.getElementById('product-reviews-modal-verified-wrap');
+    var modalProduct = document.getElementById('product-reviews-modal-product');
+    var modalProductLink = document.getElementById('product-reviews-modal-product-link');
+    var modalProductTitle = document.getElementById('product-reviews-modal-product-title');
+
+    var closeBtn = modal.querySelector('.product-reviews-modal__close');
+    var lastFocusedCard = null;
+
+    function openModal(card) {
+      lastFocusedCard = card;
+      var name = card.dataset.reviewName || 'Cliente';
+      var content = card.dataset.reviewContent || '';
+      var rating = parseInt(card.dataset.reviewRating || 5, 10);
+      var verified = card.dataset.reviewVerified === 'true';
+      var img = card.dataset.reviewImage || '';
+      var handle = (card.dataset.reviewHandle || '').trim();
+      var date = card.dataset.reviewDate || 'Hace poco';
+      var productUrl = card.dataset.reviewProductUrl || '';
+      var productTitle = card.dataset.reviewProductTitle || '';
+
+      modalName.textContent = name;
+      modalContent.textContent = content;
+      modalDate.textContent = date;
+
+      if (img) {
+        modalImg.src = img;
+        modalImg.style.display = '';
+      } else {
+        modalImg.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect fill="%23e8e4df" width="100" height="100"/%3E%3C/svg%3E';
+        modalImg.style.display = '';
+      }
+
+      if (modalVerifiedWrap) {
+        modalVerifiedWrap.hidden = !verified;
+        modalVerifiedWrap.setAttribute('data-has-handle', handle ? 'true' : 'false');
+      }
+      if (modalHandle) {
+        modalHandle.textContent = handle;
+      }
+
+      var starsHtml = '';
+      for (var i = 1; i <= 5; i++) {
+        var cls = i <= rating ? '' : ' product-reviews-modal__star-empty';
+        starsHtml += '<svg class="' + cls + '" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+      }
+      modalStars.innerHTML = starsHtml;
+
+      if (productUrl && modalProduct && modalProductLink && modalProductTitle) {
+        modalProductLink.href = productUrl;
+        modalProductTitle.textContent = productTitle || '';
+        modalProductTitle.style.display = productTitle ? '' : 'none';
+        modalProduct.hidden = false;
+      } else if (modalProduct) {
+        modalProduct.hidden = true;
+      }
+
+      modal.setAttribute('aria-hidden', 'false');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal() {
+      modal.setAttribute('aria-hidden', 'true');
+      if (lastFocusedCard && typeof lastFocusedCard.focus === 'function') lastFocusedCard.focus();
+    }
+
+    cards.forEach(function(card) {
+      card.addEventListener('click', function() { openModal(card); });
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card); }
+      });
+    });
+    closeTriggers.forEach(function(el) { el.addEventListener('click', closeModal); });
+    modal.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  })();
+</script>
+{%- endif -%}

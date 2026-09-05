@@ -1,0 +1,1256 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "revie_reviews_por_whatsapp_app_block_GkT7t6": {
+          "type": "shopify://apps/revie-reviews-por-whatsapp/blocks/app-block/32a49769-cfbe-4f29-8b19-1ae20fdb2abe",
+          "disabled": true,
+          "settings": {
+            "star_color": "#fde03c",
+            "text_color": "#292929",
+            "star_text_2": "reseñas",
+            "star_text_singular": "reseña",
+            "size": 25,
+            "showcero": "2",
+            "format": "2",
+            "utm": "2"
+          }
+        },
+        "text_ctinyR": {
+          "type": "text",
+          "settings": {
+            "text": "ORO LAMINADO / GARANTÍA DE POR VIDA",
+            "text_style": "uppercase"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "dije_upsell": {
+          "type": "dije_upsell",
+          "disabled": true,
+          "settings": {
+            "heading": "No olvides tu dije",
+            "subheading": "Completa tu combo",
+            "cadenas_caballero_handle": "cadenas-caballero",
+            "combos_caballero_handle": "combos-caballero",
+            "combos_dama_handle": "combos-dama",
+            "combos_exclude_handle": "",
+            "cadenas_hombre_dije_handle": "cadenas-hombre-dije",
+            "cadenas_dama_handle": "cadenas-dama",
+            "dije_caballero_handle": "dijes",
+            "dije_dama_handle": "dijes",
+            "dije_fallback_handle": "dijes",
+            "add_button_label": "Añadir dije al carrito",
+            "product_limit": 8,
+            "image_ratio": "square",
+            "columns_desktop": 2,
+            "columns_mobile": "2",
+            "show_vendor": false,
+            "show_rating": false,
+            "fake_review_count": false,
+            "show_secondary_image": false
+          }
+        },
+        "product_reviews_carousel": {
+          "type": "reviews_carousel",
+          "disabled": true,
+          "settings": {
+            "heading": "Ellas ya eligieron kevin jewelry",
+            "subtext": "Entrega verificada · Marca registrada"
+          }
+        },
+        "review_card_1": {
+          "type": "review_card",
+          "settings": {
+            "author_name": "Laura De León",
+            "content": "DIVINA mi virgen milagrosa un espectáculo, no me la quito nunca.",
+            "verified": true,
+            "rating": 5,
+            "image_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/ChatGPT_Image_16_feb_2026_08_48_42_p.m..png?v=1771340994",
+            "instagram_handle": "lauradeleonc",
+            "date": "13/4/2024",
+            "product_url": "/products/conjunto-virgen-milagrosa-circonias",
+            "product_title": "CONJUNTO VIRGEN MILAGROSA CIRCONIAS"
+          }
+        },
+        "review_card_2": {
+          "type": "review_card",
+          "settings": {
+            "author_name": "Karen Cano",
+            "content": "¡Soy Clienta desde que vi que mi primera joya no se despintaba!",
+            "verified": true,
+            "rating": 5,
+            "image_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/famoso.png?v=1771340994",
+            "instagram_handle": "",
+            "date": "Hace poco",
+            "product_url": "",
+            "product_title": ""
+          }
+        },
+        "review_card_3": {
+          "type": "review_card",
+          "settings": {
+            "author_name": "Silvi Araujo",
+            "content": "¡Amo con locura los collares! Calidad y belleza.",
+            "verified": true,
+            "rating": 5,
+            "image_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_5.14.03_PM.jpg?v=1771280711",
+            "instagram_handle": "",
+            "date": "Hace poco",
+            "product_url": "",
+            "product_title": ""
+          }
+        },
+        "review_card_4": {
+          "type": "review_card",
+          "settings": {
+            "author_name": "Ana Martínez",
+            "content": "La calidad del oro laminado se nota. Compré aretes y los uso todos los días.",
+            "verified": true,
+            "rating": 5,
+            "image_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_5.15.12_PM.jpg?v=1771280712",
+            "instagram_handle": "",
+            "date": "Hace poco",
+            "product_url": "",
+            "product_title": ""
+          }
+        },
+        "review_card_5": {
+          "type": "review_card",
+          "settings": {
+            "author_name": "Diana Marcel C.",
+            "content": "Súper lindo! Excelente calidad. De todo mi gusto.",
+            "verified": true,
+            "rating": 5,
+            "image_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/ChatGPT_Image_16_feb_2026_08_48_42_p.m..png?v=1771340994",
+            "instagram_handle": "",
+            "date": "Hace poco",
+            "product_url": "",
+            "product_title": ""
+          }
+        },
+        "review_card_6": {
+          "type": "review_card",
+          "settings": {
+            "author_name": "Stefany T.",
+            "content": "Me encantó el detalle desde la joya hasta el empaque. Muy recomendado.",
+            "verified": true,
+            "rating": 5,
+            "image_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/famoso.png?v=1771340994",
+            "instagram_handle": "",
+            "date": "Hace poco",
+            "product_url": "",
+            "product_title": ""
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "collapsible_tab_hE9hjP": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Nuestra Garantía",
+            "icon": "heart",
+            "content": "<p><strong>Oro laminado 18K con GARANTÍA DE POR VIDA</strong></p><p>Nuestras joyas están elaboradas en <strong>oro laminado de 18K</strong>, con un proceso de alta calidad internacional que tienen la misma apariencia al oro macizo.</p><p>- Son joyas creadas para resistir todos los días</p><p><br/>🛡️ Por eso incluye <strong>Garantía de vida</strong>.</p><p>Aqui estas comprando calidad garantizada.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_j6zneW": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Ideal para uso diarío",
+            "icon": "check_mark",
+            "content": "<p>Esta joya está creada para resistir cualquier tipo de ambiente.</p><p>✔️ No genera alergias<br/>✔️ Resistente al uso diario<br/>✔️ Mantiene su brillo <br/>✔️ Resiste agua, mar, piscina  </p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_XNmzQL": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Compra segura",
+            "icon": "lock",
+            "content": "<p><strong>Somos una marca con 7 años de trayectoria, con ShowRoom en Pereira</strong></p><p>En <strong>Italux Joyería</strong> compras en una joyería con experiencia en la industria del oro laminado<br/><br/>✔️ Somos una marca registrada</p><p><strong>Presencia internacional:<br/></strong>Colombia<br/>Ecuador<br/>Chile<br/>Peru<br/>Costa Rica</p><p>📦 Envíos rápidos y seguros en toda Colombia<br/>🎁 Empaque de lujo<br/>🔒 Asesoramiento antes y después de tu compra</p><p></p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_qgRXVK": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Envío",
+            "icon": "truck",
+            "content": "<p>Se realizan envíos a todo el país</p>",
+            "page": ""
+          }
+        },
+        "revie_reviews_por_whatsapp_app_block_2_Akf8x9": {
+          "type": "shopify://apps/revie-reviews-por-whatsapp/blocks/app-block-2/32a49769-cfbe-4f29-8b19-1ae20fdb2abe",
+          "disabled": true,
+          "settings": {
+            "title": "RESEÑAS",
+            "format": "2",
+            "max_width": 900,
+            "content_padding": 22,
+            "star_color": "#000000",
+            "show_comment": "No",
+            "max_count": 4,
+            "star_text": "Estrellas",
+            "subtitle": "OPINIONES",
+            "buyer": "Comprador verificado",
+            "based": "Basado en",
+            "opinions": "opiniones",
+            "no_reviews": "SIN OPINIONES",
+            "show_summary": "No",
+            "label_media_title": "Fotos y videos de clientes",
+            "label_seeall": "Ver todas",
+            "label_topics": "Lo que más mencionan",
+            "label_chip_all": "Todas",
+            "label_chip_photo": "Con foto",
+            "label_chip_video": "Con video",
+            "label_chip_audio": "Con audio",
+            "label_sort_featured": "Destacadas",
+            "label_sort_recent": "Más recientes",
+            "label_sort_top": "Mejor puntuadas",
+            "label_sort_low": "Menor puntuación",
+            "label_response": "Respuesta de la tienda",
+            "label_more": "Ver las {count} opiniones",
+            "label_whatsapp": "Reseñas por WhatsApp con",
+            "label_files": "archivos"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "revie_reviews_por_whatsapp_app_block_GkT7t6",
+        "text_ctinyR",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "dije_upsell",
+        "product_reviews_carousel",
+        "review_card_1",
+        "review_card_2",
+        "review_card_3",
+        "review_card_4",
+        "review_card_5",
+        "review_card_6",
+        "description",
+        "share",
+        "collapsible_tab_hE9hjP",
+        "collapsible_tab_j6zneW",
+        "collapsible_tab_XNmzQL",
+        "collapsible_tab_qgRXVK",
+        "revie_reviews_por_whatsapp_app_block_2_Akf8x9"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "video_slider": {
+      "type": "video-slider",
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/a5b07de02bdf46ada3c90b0fa3606920.mp4",
+            "alt": "",
+            "autoplay": true
+          }
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/48068a3a8a4848a1ba9f27fc44e63051.mp4",
+            "alt": "",
+            "autoplay": true
+          }
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/96ac85af477d42afb156fb28421be602.mov",
+            "alt": "",
+            "autoplay": true
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/b7acfab11811412182fbd0d8942f9c57.mov",
+            "alt": "",
+            "autoplay": true
+          }
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "full_width": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "reviews_dual_carousel": {
+      "type": "reviews-dual-carousel",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_5.12.51_PM.jpg?v=1771280712",
+            "content": "Buena calidad, los recomiendo."
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_5.14.03_PM.jpg?v=1771280711",
+            "content": "Mi cadena sigue intacta después de meses."
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_5.14.54_PM.jpg?v=1771280712",
+            "content": "El mismo tono del oro, no se despinta."
+          }
+        },
+        "r4": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_5.15.12_PM.jpg?v=1771280712",
+            "content": "Adquirí un anillo, llegó impecable y bien empaquetado."
+          }
+        },
+        "r5": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_4.36.06_PM.jpg?v=1771278222",
+            "content": "Producto excelente, superó mis expectativas."
+          }
+        },
+        "r6": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_5.13.18_PM.jpg?v=1771280712",
+            "content": "Regalo perfecto, mi madre quedó encantada."
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "image_with_text_KMjqfg": {
+      "type": "image-with-text",
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/detalles_la_que_es_orolamiando.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_pqJrTg": {
+      "type": "image-with-text",
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Tabala_comparativa.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "gold_comparison_table": {
+      "type": "gold-comparison-table",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "cell_1": "100% Oro puro",
+            "cell_2": "Múltiples micras de Oro 18k",
+            "cell_3": "Capa superficial de oro"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "cell_1": "Garantía de por vida",
+            "cell_2": "Garantía de por vida",
+            "cell_3": "Pierde el tono con rapidez"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "cell_1": "Precio elevado",
+            "cell_2": "Inversión inteligente",
+            "cell_3": "Precio bajo"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "cell_1": "No genera alergias",
+            "cell_2": "No genera alergias",
+            "cell_3": "Puede causar alergia"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "cell_1": "Ideal uso diario",
+            "cell_2": "Ideal uso diario",
+            "cell_3": "Uso ocasional"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "col1_header": "Oro macizo",
+        "col2_header": "Nuestro Oro laminado",
+        "col3_header": "Baño de oro",
+        "highlight_column": 2,
+        "footer_text": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "reviews_carousel": {
+      "type": "reviews-carousel",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_5.15.12_PM.jpg?v=1771280712",
+            "author_name": "Samuel Fernandez",
+            "time_ago": "5h ago",
+            "content": "Compré un collar para mi abuela y le fascinó. Se ve de muy buena calidad y el empaque es de joyería fina. Excelente opción para regalar sin gastar una fortuna.",
+            "likes": "57",
+            "comments": "2",
+            "shares": "2"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_5.14.03_PM.jpg?v=1771280711",
+            "author_name": "María García",
+            "time_ago": "1d ago",
+            "content": "Producto excelente, llegó muy bien empaquetado. La calidad superó mis expectativas. 100% recomendado.",
+            "likes": "23",
+            "comments": "1",
+            "shares": "0"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_4.37.03_PM.jpg?v=1771278222",
+            "author_name": "Carlos López",
+            "time_ago": "2d ago",
+            "content": "Regalo perfecto para mi madre. Le encantó el detalle y la presentación. Volveré a comprar.",
+            "likes": "41",
+            "comments": "3",
+            "shares": "1"
+          }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_4.37.55_PM.jpg?v=1771278222",
+            "author_name": "Ana Martínez",
+            "time_ago": "3d ago",
+            "content": "La calidad del oro laminado se nota. Compré unos aretes y los uso todos los días. Llegaron súper rápido y bien protegidos.",
+            "likes": "34",
+            "comments": "5",
+            "shares": "1"
+          }
+        },
+        "review_5": {
+          "type": "review",
+          "settings": {
+            "avatar_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/WhatsApp_Image_2026-02-16_at_4.36.06_PM.jpg?v=1771278222",
+            "author_name": "Roberto Vega",
+            "time_ago": "1 sem",
+            "content": "Segunda compra y no defraudan. El anillo quedó perfecto. Atención al cliente de 10. Recomendado.",
+            "likes": "28",
+            "comments": "2",
+            "shares": "0"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3",
+        "review_4",
+        "review_5"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1768261648386d41ed": {
+      "type": "apps",
+      "blocks": {
+        "revie_reviews_por_whatsapp_app_block_3_W3dm7D": {
+          "type": "shopify://apps/revie-reviews-por-whatsapp/blocks/app-block-3/32a49769-cfbe-4f29-8b19-1ae20fdb2abe",
+          "settings": {
+            "title": "Reviews",
+            "format": "2",
+            "title_color": "#000000",
+            "title_size": 24,
+            "title_pos": "flex-start",
+            "star_color": "#000000",
+            "size": 15,
+            "back_color": "#ffffff",
+            "text_color": "#000000",
+            "size_text": 15,
+            "name": "2",
+            "truncate": "1",
+            "max_reviews": 10,
+            "image": "1",
+            "from": "1",
+            "width_elements": 4,
+            "content_padding": 22,
+            "mobil_content_padding": 16,
+            "movil_count": "1.5",
+            "max_width": 900
+          }
+        }
+      },
+      "block_order": [
+        "revie_reviews_por_whatsapp_app_block_3_W3dm7D"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "image_with_text_rq3Rx6": {
+      "type": "image-with-text",
+      "disabled": true,
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Otros clientes también buscaron",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "1768261674b25685fc": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "176991839020b08c43": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "reviews_ratings": {
+      "type": "reviews-ratings",
+      "blocks": {
+        "rr1": {
+          "type": "review",
+          "settings": {
+            "author_name": "Carlos V.",
+            "date": "",
+            "rating": 5,
+            "content": "Prefiero el oro laminado por durabilidad y apariencia. Muy conforme con la compra.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6253.jpg?v=1788188329"
+          }
+        },
+        "rr2": {
+          "type": "review",
+          "settings": {
+            "author_name": "Sebastian G.",
+            "date": "",
+            "rating": 5,
+            "content": "Compré online y la calidad coincide con la foto. Muy satisfecho.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/IMG_2270.jpg?v=1771619795"
+          }
+        },
+        "rr3": {
+          "type": "review",
+          "settings": {
+            "author_name": "Stefany T.",
+            "date": "",
+            "rating": 5,
+            "content": "Me encantó el detalle desde la joya hasta el empaque. Muy recomendado.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6260.jpg?v=1788188327"
+          }
+        },
+        "rr4": {
+          "type": "review",
+          "settings": {
+            "author_name": "Daniel F.",
+            "date": "",
+            "rating": 5,
+            "content": "Me gusto la Calidad, color del oro, empaque y envío rápido. Todo perfecto.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6266.jpg?v=1788190065"
+          }
+        },
+        "rr5": {
+          "type": "review",
+          "settings": {
+            "author_name": "Juan David C.",
+            "date": "",
+            "rating": 5,
+            "content": "Súper lindo! Excelente calidad. De todo mi gusto.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0880/9879/9916/files/IMG_2279.jpg?v=1771619797"
+          }
+        },
+        "rr6": {
+          "type": "review",
+          "settings": {
+            "author_name": "Mateo C.",
+            "date": "",
+            "rating": 5,
+            "content": "Muy buena calidad, muy bonita.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6267.jpg?v=1788190063"
+          }
+        },
+        "rr7": {
+          "type": "review",
+          "settings": {
+            "author_name": "Alfredo R.",
+            "date": "",
+            "rating": 5,
+            "content": "Segunda compra. No defraudan, excelente atención y producto.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/WhatsApp_Image_2026-03-03_at_7.18.21_AM_e13395a5-6a0f-4f08-bf4f-5eb4e61bd184.jpg?v=1787623024"
+          }
+        },
+        "rr8": {
+          "type": "review",
+          "settings": {
+            "author_name": "Diego C.",
+            "date": "",
+            "rating": 4,
+            "content": "Llegó bien empaquetado y en el tiempo indicado. La joya se ve hermosa.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/WhatsApp_Image_2026-03-10_at_8.53.03_AM_57e53c8c-f8c0-4906-9dbf-66fceb01533a.jpg?v=1787623024"
+          }
+        },
+        "rr9": {
+          "type": "review",
+          "settings": {
+            "author_name": "Patricia M.",
+            "date": "",
+            "rating": 5,
+            "content": "Increíble calidad. Compré aretes y collar, ambos perfectos.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_1770.jpg?v=1729374077"
+          }
+        },
+        "rr10": {
+          "type": "review",
+          "settings": {
+            "author_name": "Fernando S.",
+            "date": "",
+            "rating": 5,
+            "content": "Mi esposa amó el regalo. El empaque es de lujo.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/WhatsApp_Image_2026-02-27_at_11.23.30_AM_b3a9165f-e980-4aaf-bbf2-b07272622617.jpg?v=1787623024"
+          }
+        },
+        "rr11": {
+          "type": "review",
+          "settings": {
+            "author_name": "Carmen R.",
+            "date": "",
+            "rating": 5,
+            "content": "Tercera compra. Siempre superan expectativas.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6261.jpg?v=1788188328"
+          }
+        },
+        "rr12": {
+          "type": "review",
+          "settings": {
+            "author_name": "Andrés P.",
+            "date": "",
+            "rating": 5,
+            "content": "El anillo quedó espectacular. Recomiendo 100%.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/WhatsApp_Image_2026-03-19_at_6.39.54_AM.jpg?v=1787623024"
+          }
+        },
+        "rr13": {
+          "type": "review",
+          "settings": {
+            "author_name": "Laura G.",
+            "date": "",
+            "rating": 5,
+            "content": "Envío súper rápido y el producto igual que en las fotos.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/videos/c/o/v/11a24ddd47a341b484922656397846fe.mov"
+          }
+        },
+        "rr14": {
+          "type": "review",
+          "settings": {
+            "author_name": "Miguel Ángel T.",
+            "date": "",
+            "rating": 5,
+            "content": "Excelente relación calidad-precio. Muy contento.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6257.jpg?v=1788188329"
+          }
+        },
+        "rr15": {
+          "type": "review",
+          "settings": {
+            "author_name": "Sandra N.",
+            "date": "",
+            "rating": 5,
+            "content": "La pulsera es preciosa. Llegó en perfectas condiciones.",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "rr16": {
+          "type": "review",
+          "settings": {
+            "author_name": "Ricardo B.",
+            "date": "",
+            "rating": 5,
+            "content": "Atención al cliente excelente. Producto de primera.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/WhatsApp_Image_2026-03-13_at_9.11.36_AM.jpg?v=1787623025"
+          }
+        },
+        "rr17": {
+          "type": "review",
+          "settings": {
+            "author_name": "Elena C.",
+            "date": "",
+            "rating": 5,
+            "content": "Todo el oro laminado que he comprado aquí es de calidad.",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/WhatsApp_Image_2026-03-16_at_6.28.29_AM_1c09b4d0-7bad-4b9e-8305-9a79a53c9113.jpg?v=1787623023"
+          }
+        },
+        "rr18": {
+          "type": "review",
+          "settings": {
+            "author_name": "Diego F.",
+            "date": "",
+            "rating": 5,
+            "content": "Regalo para mi madre. Quedó fascinada con la joya.",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_BPKbyG": {
+          "type": "review",
+          "settings": {
+            "author_name": "Laura",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_9dM3BT": {
+          "type": "review",
+          "settings": {
+            "author_name": "Camilo",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "Los reomiendo",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6254.jpg?v=1788188329"
+          }
+        },
+        "review_BkMTK8": {
+          "type": "review",
+          "settings": {
+            "author_name": "Cristian D.",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "Compres unas pulseras y me encantaron",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6265.jpg?v=1788190064"
+          }
+        },
+        "review_baXarC": {
+          "type": "review",
+          "settings": {
+            "author_name": "Sara R.",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "El combo es especatacular, tal cual lo que muestran.",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_4kH3zg": {
+          "type": "review",
+          "settings": {
+            "author_name": "Tomas R.",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "Muy rápidos con las entregas y excelente servicio",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6268.jpg?v=1788190064"
+          }
+        },
+        "review_gX9QWx": {
+          "type": "review",
+          "settings": {
+            "author_name": "Santiago",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "100% recomendados",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_PaqB3J": {
+          "type": "review",
+          "settings": {
+            "author_name": "Victor",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "compre un combo de cadena y dije, la verdad supero mis expectativas",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_RBmnqQ": {
+          "type": "review",
+          "settings": {
+            "author_name": "Manuel",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "La pulsera muy buena, si los recomiendo",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_Fn6ejc": {
+          "type": "review",
+          "settings": {
+            "author_name": "Isabella R.",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "El set de topitos esta genial, muy contenta con el servicio",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_3453.jpg?v=1746624509"
+          }
+        },
+        "review_E78C4Y": {
+          "type": "review",
+          "settings": {
+            "author_name": "Leo",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6259.jpg?v=1788188329"
+          }
+        },
+        "review_WTEL9Y": {
+          "type": "review",
+          "settings": {
+            "author_name": "Jaime",
+            "date": "4/10/2025",
+            "rating": 5,
+            "content": "Ye he comprado varias veces y los sigo recomendando",
+            "verified": false,
+            "image_url": "https://cdn.shopify.com/s/files/1/0828/3540/7145/files/IMG_6264.jpg?v=1788190064"
+          }
+        },
+        "review_4MJUzm": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "author_name": "",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_Nbcexn": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "author_name": "",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_J8PqgE": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "author_name": "",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_9AyjcH": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "author_name": "",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_QPebPp": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "author_name": "",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_Lf4MrW": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "author_name": "",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_fXDzT7": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "author_name": "",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_Xn79nD": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "author_name": "",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_6djr4M": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "author_name": "",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        },
+        "review_itfUqC": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "author_name": "",
+            "date": "4/11/2025",
+            "rating": 5,
+            "content": "",
+            "verified": false,
+            "image_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "rr1",
+        "rr2",
+        "rr3",
+        "rr4",
+        "rr5",
+        "rr6",
+        "rr7",
+        "rr8",
+        "rr9",
+        "rr10",
+        "rr11",
+        "rr12",
+        "rr13",
+        "rr14",
+        "rr15",
+        "rr16",
+        "rr17",
+        "rr18",
+        "review_BPKbyG",
+        "review_9dM3BT",
+        "review_BkMTK8",
+        "review_baXarC",
+        "review_4kH3zg",
+        "review_gX9QWx",
+        "review_PaqB3J",
+        "review_RBmnqQ",
+        "review_Fn6ejc",
+        "review_E78C4Y",
+        "review_WTEL9Y",
+        "review_4MJUzm",
+        "review_Nbcexn",
+        "review_J8PqgE",
+        "review_9AyjcH",
+        "review_QPebPp",
+        "review_Lf4MrW",
+        "review_fXDzT7",
+        "review_Xn79nD",
+        "review_6djr4M",
+        "review_itfUqC"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1780102224b8e0f46b": {
+      "type": "apps",
+      "blocks": {
+        "revie_reviews_por_whatsapp_app_block_4_Jb6eke": {
+          "type": "shopify://apps/revie-reviews-por-whatsapp/blocks/app-block-4/32a49769-cfbe-4f29-8b19-1ae20fdb2abe",
+          "disabled": true,
+          "settings": {
+            "title": "{star} {count} Reviews",
+            "format": "1",
+            "image": "1",
+            "from": "1",
+            "onlinephotos": "1",
+            "title_color": "#000000",
+            "title_size": 24,
+            "title_pos": "flex-start",
+            "date": true,
+            "star_color": "#000000",
+            "size": 15,
+            "back_color": "#ffffff",
+            "text_color": "#121212",
+            "size_text": 14,
+            "max_reviews": 10,
+            "nextButtonText": "Mostrar más reseñas",
+            "productButtonText": "Ver producto",
+            "max_width": 1200,
+            "content_padding": 22,
+            "max_width_image": 24,
+            "label_reviews": "reseñas",
+            "label_average": "promedio",
+            "label_verified": "Reseñas verificadas",
+            "label_photos": "Fotos de clientes",
+            "label_seeall": "Ver todas",
+            "label_chip_all": "Todas",
+            "label_chip_photo": "Con foto",
+            "label_chip_video": "Con video",
+            "label_chip_audio": "Con audio",
+            "label_chip_top": "5 estrellas",
+            "label_products_all": "Todos los productos",
+            "label_sort_featured": "Destacadas",
+            "label_sort_recent": "Más recientes",
+            "label_sort_top": "Mejor puntuadas",
+            "label_sort_old": "Más antiguas",
+            "label_response": "Respuesta de",
+            "label_stories_title": "Videos y fotos de clientes",
+            "stories_ring": "#25d366",
+            "label_wall_title": "Míralo en casas reales"
+          }
+        }
+      },
+      "block_order": [
+        "revie_reviews_por_whatsapp_app_block_4_Jb6eke"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "video_slider",
+    "reviews_dual_carousel",
+    "image_with_text_KMjqfg",
+    "image_with_text_pqJrTg",
+    "gold_comparison_table",
+    "reviews_carousel",
+    "1768261648386d41ed",
+    "image_with_text_rq3Rx6",
+    "related-products",
+    "1768261674b25685fc",
+    "176991839020b08c43",
+    "reviews_ratings",
+    "1780102224b8e0f46b"
+  ]
+}

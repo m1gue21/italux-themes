@@ -1,0 +1,233 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "order": [
+    "main",
+    "image_with_text_rq3Rx6",
+    "related-products"
+  ],
+  "sections": {
+    "image_with_text_rq3Rx6": {
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "content_layout": "no-overlap",
+        "desktop_content_alignment": "left",
+        "desktop_content_position": "top",
+        "desktop_image_width": "medium",
+        "height": "adapt",
+        "image": "shopify://shop_images/ORO_18K_LAMINADO.png",
+        "image_behavior": "none",
+        "layout": "image_first",
+        "mobile_content_alignment": "left",
+        "padding_bottom": 36,
+        "padding_top": 36,
+        "section_color_scheme": "scheme-1"
+      },
+      "type": "image-with-text"
+    },
+    "main": {
+      "block_order": [
+        "vendor",
+        "title",
+        "revie_reviews_por_whatsapp_app_block_GkT7t6",
+        "text_ctinyR",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "dije_upsell",
+        "description",
+        "share",
+        "collapsible_tab_hE9hjP",
+        "collapsible_tab_j6zneW",
+        "collapsible_tab_XNmzQL",
+        "collapsible_tab_qgRXVK",
+        "revie_reviews_por_whatsapp_app_block_2_Akf8x9"
+      ],
+      "blocks": {
+        "buy_buttons": {
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          },
+          "type": "buy_buttons"
+        },
+        "dije_upsell": {
+          "settings": {
+            "cadenas_caballero_handle": "cadenas-caballero",
+            "cadenas_dama_handle": "cadenas-dama",
+            "dije_caballero_handle": "dijes",
+            "dije_dama_handle": "dijes",
+            "dije_fallback_handle": "dijes",
+            "add_button_label": "Añadir dije al carrito",
+            "heading": "No olvides tu dije",
+            "image_ratio": "square",
+            "product_limit": 8,
+            "columns_desktop": 2,
+            "columns_mobile": "2",
+            "show_vendor": false,
+            "show_rating": false,
+            "fake_review_count": false,
+            "show_secondary_image": false,
+            "subheading": "Completa tu combo"
+          },
+          "type": "dije_upsell"
+        },
+        "collapsible_tab_XNmzQL": {
+          "settings": {
+            "content": "<p>Puedes cambiar tu joya en un tiempo de 14 Días desde el momento que recibes</p>",
+            "heading": "Cambios",
+            "icon": "return",
+            "page": ""
+          },
+          "type": "collapsible_tab"
+        },
+        "collapsible_tab_hE9hjP": {
+          "settings": {
+            "content": "<p>Cuenta con Garantía de por vida, en caso de requerirse se cambia por una totalmente nueva</p>",
+            "heading": "Nuestra Garantía",
+            "icon": "heart",
+            "page": ""
+          },
+          "type": "collapsible_tab"
+        },
+        "collapsible_tab_j6zneW": {
+          "settings": {
+            "content": "<p><em><strong>Todas nuestras  joyas son elaboradas con 3 capas de oro 18 kilates puro</strong></em></p><p><em><strong>Contramarcadas con 18K</strong></em></p>",
+            "heading": "Especificaciones",
+            "icon": "check_mark",
+            "page": ""
+          },
+          "type": "collapsible_tab"
+        },
+        "collapsible_tab_qgRXVK": {
+          "settings": {
+            "content": "<p>Se realizan envíos a todo el país</p>",
+            "heading": "Envío",
+            "icon": "truck",
+            "page": ""
+          },
+          "type": "collapsible_tab"
+        },
+        "description": {
+          "disabled": true,
+          "settings": {},
+          "type": "description"
+        },
+        "price": {
+          "settings": {},
+          "type": "price"
+        },
+        "quantity_selector": {
+          "settings": {},
+          "type": "quantity_selector"
+        },
+        "revie_reviews_por_whatsapp_app_block_2_Akf8x9": {
+          "settings": {
+            "based": "Basado en",
+            "buyer": "Comprador verificado",
+            "content_padding": 22,
+            "format": "2",
+            "max_count": 10,
+            "max_width": 900,
+            "no_reviews": "SIN OPINIONES",
+            "opinions": "opiniones",
+            "show_comment": "No",
+            "show_summary": "No",
+            "star_color": "#000000",
+            "star_text": "Estrellas",
+            "subtitle": "OPINIONES",
+            "title": "RESEÑAS"
+          },
+          "type": "shopify://apps/revie-reviews-por-whatsapp/blocks/app-block-2/32a49769-cfbe-4f29-8b19-1ae20fdb2abe"
+        },
+        "revie_reviews_por_whatsapp_app_block_GkT7t6": {
+          "settings": {
+            "format": "2",
+            "showcero": "2",
+            "size": 25,
+            "star_color": "#fde03c",
+            "star_text_2": "reseñas",
+            "text_color": "#292929",
+            "utm": "2"
+          },
+          "type": "shopify://apps/revie-reviews-por-whatsapp/blocks/app-block/32a49769-cfbe-4f29-8b19-1ae20fdb2abe"
+        },
+        "share": {
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          },
+          "type": "share"
+        },
+        "text_ctinyR": {
+          "settings": {
+            "text": "ORO LAMINADO / GARANTÍA DE POR VIDA",
+            "text_style": "uppercase"
+          },
+          "type": "text"
+        },
+        "title": {
+          "settings": {},
+          "type": "title"
+        },
+        "variant_picker": {
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          },
+          "type": "variant_picker"
+        },
+        "vendor": {
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          },
+          "type": "text"
+        }
+      },
+      "settings": {
+        "color_scheme": "scheme-1",
+        "constrain_to_viewport": true,
+        "enable_sticky_info": true,
+        "enable_video_looping": false,
+        "gallery_layout": "stacked",
+        "hide_variants": true,
+        "image_zoom": "lightbox",
+        "media_fit": "contain",
+        "media_position": "left",
+        "media_size": "large",
+        "mobile_thumbnails": "hide",
+        "padding_bottom": 12,
+        "padding_top": 36
+      },
+      "type": "main-product"
+    },
+    "related-products": {
+      "settings": {
+        "color_scheme": "scheme-1",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "heading": "Otros clientes también buscaron",
+        "heading_size": "h2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "padding_bottom": 28,
+        "padding_top": 36,
+        "products_to_show": 4,
+        "show_rating": false,
+        "show_secondary_image": true,
+        "show_vendor": false
+      },
+      "type": "related-products"
+    }
+  }
+}

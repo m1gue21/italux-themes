@@ -1,0 +1,120 @@
+.product--no-media .rating-wrapper {
+  text-align: center;
+}
+
+.rating {
+  display: inline-block;
+  margin: 0;
+}
+
+.product .rating-star {
+  --letter-spacing: 0.8;
+  --font-size: 1.7;
+}
+
+.card-wrapper .rating-star {
+  --letter-spacing: 0.4;
+  --font-size: 1.8;
+  white-space: nowrap;
+}
+
+.rating-star {
+  --color-rating-star: rgb(var(--color-foreground));
+  --percent: calc(
+    (
+        var(--rating) / var(--rating-max) + var(--rating-decimal) * var(--font-size) /
+          (var(--rating-max) * (var(--letter-spacing) + var(--font-size)))
+      ) * 100%
+  );
+  letter-spacing: calc(var(--letter-spacing) * 1rem);
+  font-size: calc(var(--font-size) * 1rem);
+  line-height: 1;
+  display: inline-block;
+  white-space: nowrap;
+  font-family: Times;
+  margin: 0;
+}
+
+.rating-star::before {
+  content: '★★★★★';
+  background: linear-gradient(
+    90deg,
+    var(--color-rating-star) var(--percent),
+    rgba(var(--color-foreground), 0.15) var(--percent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rating-text {
+  display: none;
+}
+
+/* Estrellas + conteo en la misma línea */
+.rating-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.4rem;
+}
+
+.rating-row .rating,
+.rating-row .rating-count,
+.rating-row .rating-text {
+  margin: 0;
+}
+
+.rating-count {
+  display: inline-block;
+  margin: 0;
+}
+
+/* ── Rating en página de producto ── */
+.product-rating-row--link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.product-rating-row--link:hover .rating-star::before {
+  opacity: 0.8;
+}
+
+.product-rating-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.product-rating-row .rating,
+.product-rating-row .rating-count {
+  margin: 0;
+}
+
+.product-rating-row .rating-count {
+  font-size: 1.5rem;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.product-rating-star {
+  --letter-spacing: 0.8;
+  --font-size: 2.0;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 750px) {
+  .product-rating-star {
+    --font-size: 2.2;
+  }
+}
+
+@media (forced-colors: active) {
+  .rating {
+    display: none;
+  }
+
+  .rating-text {
+    display: block;
+  }
+}

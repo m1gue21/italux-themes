@@ -1,0 +1,144 @@
+{{ 'component-collection-nav-strip.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign active_handle = ''
+  if template.name == 'collection' and collection != blank
+    assign active_handle = collection.handle
+  endif
+
+  assign nav_links = nil
+  if menu != blank and linklists[menu] != blank and linklists[menu].links.size > 0
+    assign nav_links = linklists[menu].links
+  endif
+-%}
+
+<nav class="collection-nav-strip" aria-label="Colecciones">
+  <div class="collection-nav-strip__viewport" id="CollectionNavStrip">
+    <ul class="collection-nav-strip__list" role="list">
+      {%- if nav_links != blank -%}
+        {%- for link in nav_links -%}
+          {%- if link.links != blank -%}
+            <li class="collection-nav-strip__item collection-nav-strip__item--has-dropdown">
+              <details
+                class="collection-nav-strip__dropdown"
+                {% if link.child_active %}
+                  open
+                {% endif %}
+              >
+                <summary
+                  class="collection-nav-strip__link collection-nav-strip__trigger{% if link.child_active %} collection-nav-strip__link--active{% endif %}"
+                >
+                  <span class="collection-nav-strip__label">{{ link.title | escape }}</span>
+                  <span class="collection-nav-strip__caret" aria-hidden="true"></span>
+                </summary>
+                <ul class="collection-nav-strip__submenu list-menu" role="list">
+                  {%- for childlink in link.links -%}
+                    <li class="collection-nav-strip__subitem">
+                      <a
+                        href="{{ childlink.url }}"
+                        class="collection-nav-strip__sublink{% if childlink.current %} collection-nav-strip__sublink--active{% endif %}"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ childlink.title | escape }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </details>
+            </li>
+          {%- elsif link.type == 'collection_link' and link.object != blank -%}
+            {%- assign nav_collection = link.object -%}
+            {%- if nav_collection.products_count > 0 -%}
+              <li class="collection-nav-strip__item">
+                <a
+                  href="{{ link.url }}"
+                  class="collection-nav-strip__link{% if nav_collection.handle == active_handle %} collection-nav-strip__link--active{% endif %}"
+                  {% if nav_collection.handle == active_handle %}
+                    aria-current="page"
+                  {% endif %}
+                >
+                  {{ link.title | escape }}
+                </a>
+              </li>
+            {%- endif -%}
+          {%- else -%}
+            <li class="collection-nav-strip__item">
+              <a
+                href="{{ link.url }}"
+                class="collection-nav-strip__link{% if link.current %} collection-nav-strip__link--active{% endif %}"
+                {% if link.current %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{ link.title | escape }}
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for nav_collection in collections -%}
+          {%- if nav_collection.products_count > 0 -%}
+            {%- unless nav_collection.handle == 'frontpage' -%}
+              <li class="collection-nav-strip__item">
+                <a
+                  href="{{ nav_collection.url }}"
+                  class="collection-nav-strip__link{% if nav_collection.handle == active_handle %} collection-nav-strip__link--active{% endif %}"
+                  {% if nav_collection.handle == active_handle %}
+                    aria-current="page"
+                  {% endif %}
+                >
+                  {{ nav_collection.title | escape }}
+                </a>
+              </li>
+            {%- endunless -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  (() => {
+    const viewport = document.getElementById('CollectionNavStrip');
+    if (!viewport) return;
+
+    const active = viewport.querySelector('.collection-nav-strip__link--active, .collection-nav-strip__sublink--active');
+    if (active) {
+      const scrollTarget = active.closest('.collection-nav-strip__item') || active;
+      const offset = scrollTarget.offsetLeft - viewport.clientWidth / 2 + scrollTarget.clientWidth / 2;
+      viewport.scrollLeft = Math.max(0, offset);
+    }
+
+    viewport.querySelectorAll('.collection-nav-strip__dropdown').forEach((dropdown) => {
+      const summary = dropdown.querySelector('summary');
+      const submenu = dropdown.querySelector('.collection-nav-strip__submenu');
+      if (!summary || !submenu) return;
+
+      const positionSubmenu = () => {
+        const rect = summary.getBoundingClientRect();
+        submenu.style.top = `${rect.bottom}px`;
+        submenu.style.left = `${rect.left}px`;
+      };
+
+      dropdown.addEventListener('toggle', () => {
+        if (dropdown.open) {
+          positionSubmenu();
+          viewport.querySelectorAll('.collection-nav-strip__dropdown[open]').forEach((other) => {
+            if (other !== dropdown) other.removeAttribute('open');
+          });
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (dropdown.open) positionSubmenu();
+      });
+
+      viewport.addEventListener('scroll', () => {
+        if (dropdown.open) positionSubmenu();
+      }, { passive: true });
+    });
+  })();
+</script>

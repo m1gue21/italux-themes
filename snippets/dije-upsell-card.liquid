@@ -1,0 +1,58 @@
+{% comment %}
+  Tarjeta seleccionable de dije para el upsell en PDP.
+
+  Accepts:
+  - dije_product: {Object} Producto dije
+  - card_index: {Number} Índice para lazy load
+{% endcomment %}
+
+{%- capture dije_variants_json -%}
+[
+{%- for variant in dije_product.variants -%}
+  {
+    "id": {{ variant.id }},
+    "title": {{ variant.title | json }},
+    "available": {{ variant.available }}
+  }{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]
+{%- endcapture -%}
+
+<div
+  class="dije-upsell-card"
+  data-product-id="{{ dije_product.id }}"
+  data-product-title="{{ dije_product.title | escape }}"
+  data-variants='{{ dije_variants_json | strip_newlines }}'
+>
+  <button
+    type="button"
+    class="dije-upsell-card__select"
+    aria-pressed="false"
+    aria-label="{{ dije_product.title | escape }}"
+  >
+    <div class="dije-upsell-card__media ratio" style="--ratio-percent: 100%;">
+      {%- if dije_product.featured_media -%}
+        <img
+          src="{{ dije_product.featured_media | image_url: width: 300 }}"
+          alt="{{ dije_product.featured_media.alt | escape }}"
+          width="300"
+          height="300"
+          {% if card_index > 1 %}
+            loading="lazy"
+          {% endif %}
+          class="dije-upsell-card__image"
+          draggable="false"
+        >
+      {%- else -%}
+        {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+      {% render 'product-image-badges', product: dije_product %}
+    </div>
+    <div class="dije-upsell-card__info">
+      <span class="dije-upsell-card__title">{{ dije_product.title | escape }}</span>
+      <div class="dije-upsell-card__price">
+        {% render 'price', product: dije_product, price_class: '', show_compare_at_price: true %}
+      </div>
+    </div>
+  </button>
+</div>

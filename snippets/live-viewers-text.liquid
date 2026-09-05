@@ -1,0 +1,89 @@
+{% comment %}
+  Stock limitado + texto animado: "X personas están viendo la oferta en este momento"
+{% endcomment %}
+<style>
+  .limited-stock-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+    letter-spacing: 0.13rem;
+    line-height: calc(1 + 0.5 / var(--font-body-scale, 1));
+    color: rgb(var(--color-foreground));
+  }
+  @media screen and (min-width: 750px) {
+    .limited-stock-container {
+      font-size: 1.8rem;
+    }
+  }
+  .limited-stock-container .dot {
+    flex-shrink: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: 0.65em;
+    border-radius: 50%;
+    background-color: #c94a2e;
+    box-shadow: 0 0 0 0 rgba(201, 74, 46, 0.4);
+    animation: dot-shadow-twinkle 1.2s ease-in-out infinite;
+  }
+  @keyframes dot-shadow-twinkle {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(201, 74, 46, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 6px rgba(201, 74, 46, 0.15), 0 0 12px 2px rgba(201, 74, 46, 0.35);
+    }
+  }
+  .limited-stock-text1 {
+    font-weight: bold;
+  }
+  .limited-stock-text2 {
+    font-weight: normal;
+  }
+  .limited-stock-highlight {
+    display: none;
+  }
+  .live-viewers-banner {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.13rem;
+    line-height: calc(1 + 0.5 / var(--font-body-scale, 1));
+    color: rgb(var(--color-foreground));
+    opacity: 0.9;
+  }
+  @media screen and (min-width: 750px) {
+    .live-viewers-banner {
+      font-size: 1.8rem;
+    }
+  }
+  .live-viewers-banner .live-viewers-count {
+    font-weight: bold;
+  }
+</style>
+<div class="limited-stock-container">
+  <div class="dot"><span style="visibility: hidden;">.</span></div>
+  <div>
+    <span class="limited-stock-text1">¡Stock Limitado!</span>
+    <span class="limited-stock-text2">Pocas piezas disponibles. <span class="limited-stock-highlight"></span></span>
+  </div>
+</div>
+<p class="live-viewers-banner" id="live-viewers-banner-product">
+  <span id="live-viewers-count-product" class="live-viewers-count">28</span> personas están viendo la oferta en este momento
+</p>
+<script>
+  (function() {
+    var min = 20, max = 40;
+    var current = Math.floor(Math.random() * (max - min + 1)) + min;
+    var countEl = document.getElementById('live-viewers-count-product');
+    if (countEl) {
+      countEl.textContent = current;
+      setInterval(function() {
+        var delta = [ -2, -1, 1, 2 ][Math.floor(Math.random() * 4)];
+        current = Math.max(min, Math.min(max, current + delta));
+        countEl.textContent = current;
+      }, 2000);
+    }
+  })();
+</script>

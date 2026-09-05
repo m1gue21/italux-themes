@@ -1,0 +1,97 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_NrfjYR": {
+          "type": "announcement",
+          "settings": {
+            "text": "🤝 Envío gratis - Paga al recibir",
+            "link": ""
+          }
+        },
+        "announcement_cynbrP": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "⏰ 30% Descuentos en toda la tienda",
+            "link": ""
+          }
+        },
+        "announcement_BgrBhL": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "Te damos la bienvenida a nuestra tienda",
+            "link": ""
+          }
+        },
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "💵 Recibimos todos lo medios de pago 💳",
+            "link": ""
+          }
+        },
+        "announcement_kXJXCD": {
+          "type": "announcement",
+          "settings": {
+            "text": "Pago a credito con Addi👌",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_NrfjYR",
+        "announcement_cynbrP",
+        "announcement_BgrBhL",
+        "announcement-bar-0",
+        "announcement_kXJXCD"
+      ],
+      "settings": {
+        "auto_rotate": true,
+        "change_slides_speed": 4,
+        "color_scheme": "scheme-3",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "enable_collection_nav": true,
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "barra-de-inicio",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

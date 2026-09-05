@@ -1,0 +1,75 @@
+{% comment %}
+  Badges sobre la imagen del producto: agotado (arriba) y ahorro (abajo).
+
+  Accepts:
+  - product: {Object} Product Liquid object (required)
+  - use_variant: {Boolean} Usa variante seleccionada para calcular ahorro (optional)
+  - show_sold_out: {Boolean} Muestra badge de agotado (default: true)
+  - show_savings: {Boolean} Muestra badge de ahorro (default: true)
+  - show_offer: {Boolean} Muestra badge OFERTA arriba (default: true)
+{% endcomment %}
+{%- liquid
+  assign show_sold_out = show_sold_out | default: true
+  assign show_savings = show_savings | default: true
+  assign show_offer = show_offer | default: true
+  assign savings_amount = 0
+  assign has_savings = false
+
+  if use_variant
+    assign savings_variant = product.selected_or_first_available_variant
+    if savings_variant.compare_at_price > savings_variant.price
+      assign savings_amount = savings_variant.compare_at_price | minus: savings_variant.price
+      assign has_savings = true
+    endif
+  elsif product.compare_at_price > product.price and product.compare_at_price != blank
+    assign savings_amount = product.compare_at_price | minus: product.price
+    assign has_savings = true
+  elsif product.compare_at_price_max > product.price_min
+    assign savings_amount = product.compare_at_price_max | minus: product.price_min
+    assign has_savings = true
+  else
+    for variant in product.variants
+      if variant.compare_at_price > variant.price
+        assign variant_savings = variant.compare_at_price | minus: variant.price
+        if variant_savings > savings_amount
+          assign savings_amount = variant_savings
+          assign has_savings = true
+        endif
+      endif
+    endfor
+  endif
+-%}
+
+{%- if show_sold_out and product.available == false -%}
+  <span
+    class="product-overlay-badge product-overlay-badge--sold-out"
+    id="SoldOutBadge-{{ product.id }}"
+  >
+    {{- 'products.product.sold_out' | t -}}
+  </span>
+{%- endif -%}
+
+{%- if show_offer and has_savings and savings_amount > 0 and product.available -%}
+  <span class="product-overlay-badge product-overlay-badge--offer" id="OfferBadge-{{ product.id }}">
+    OFERTA
+  </span>
+{%- endif -%}
+
+{%- if show_savings and has_savings and savings_amount > 0 -%}
+  <div
+    class="product-overlay-badge product-overlay-badge--savings"
+    aria-label="Ahorras {% if settings.currency_code_enabled %}{{ savings_amount | money_with_currency }}{% else %}{{ savings_amount | money }}{% endif %}"
+  >
+    <span class="product-overlay-badge__icon" aria-hidden="true">
+      {{- 'icon-price-tag.svg' | inline_asset_content -}}
+    </span>
+    <span class="product-overlay-badge__label">AHORRAS</span>
+    <span class="product-overlay-badge__amount">
+      {%- if settings.currency_code_enabled -%}
+        {{ savings_amount | money_with_currency }}
+      {%- else -%}
+        {{ savings_amount | money }}
+      {%- endif -%}
+    </span>
+  </div>
+{%- endif -%}

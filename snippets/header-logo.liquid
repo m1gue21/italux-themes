@@ -1,0 +1,49 @@
+{% comment %}
+  Logo del header: usa el del editor o el asset Italux como respaldo.
+
+  Accepts:
+  - logo_class: {String} Clases CSS del img
+  - preload: {Boolean} Precargar imagen
+{% endcomment %}
+
+{%- liquid
+  assign logo_width = settings.logo_width | default: 70
+  assign logo_alt = shop.name | escape
+  assign use_theme_logo = false
+
+  if settings.logo != blank
+    assign logo_alt = settings.logo.alt | default: shop.name | escape
+    assign logo_height = logo_width | divided_by: settings.logo.aspect_ratio
+  else
+    assign use_theme_logo = true
+    assign logo_height = logo_width
+  endif
+-%}
+
+<div class="header__heading-logo-wrapper">
+  {%- if use_theme_logo -%}
+    <img
+      src="{{ 'italux-logo.png' | asset_url }}"
+      alt="{{ logo_alt }}"
+      width="{{ logo_width }}"
+      height="{{ logo_height }}"
+      class="{{ logo_class }}"
+      {% if preload %}fetchpriority="high"{% endif %}
+    >
+  {%- else -%}
+    {% capture sizes %}{% if logo_class contains 'motion-reduce' %}(max-width: {{ logo_width | times: 2 }}px) 50vw, {{ logo_width }}px{% else %}(min-width: 750px) {{ logo_width }}px, 50vw{% endif %}{% endcapture %}
+    {% capture widths %}{{ logo_width }}, {{ logo_width | times: 1.5 | round }}, {{ logo_width | times: 2 }}{% endcapture %}
+    {{
+      settings.logo
+      | image_url: width: 600
+      | image_tag:
+        class: logo_class,
+        widths: widths,
+        height: logo_height,
+        width: logo_width,
+        alt: logo_alt,
+        sizes: sizes,
+        preload: preload
+    }}
+  {%- endif -%}
+</div>

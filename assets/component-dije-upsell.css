@@ -1,0 +1,256 @@
+dije-upsell-picker,
+.dije-upsell {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 0;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.dije-upsell__header {
+  margin-bottom: 0.8rem;
+}
+
+.dije-upsell__eyebrow {
+  margin: 0 0 0.15rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.65);
+}
+
+.dije-upsell__heading {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+  color: rgb(var(--color-foreground));
+}
+
+.dije-upsell__slider {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.dije-upsell__track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  gap: 0.7rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  cursor: grab;
+  touch-action: pan-x;
+}
+
+.dije-upsell__track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.dije-upsell__track.is-dragging .dije-upsell-card__select {
+  pointer-events: none;
+}
+
+.dije-upsell__track::-webkit-scrollbar {
+  display: none;
+}
+
+.dije-upsell__slide {
+  flex: 0 0 44%;
+  width: 44%;
+  min-width: 44%;
+  max-width: 44%;
+  margin: 0;
+  padding: 0;
+  scroll-snap-align: start;
+  list-style: none;
+}
+
+.dije-upsell-card {
+  height: 100%;
+}
+
+.dije-upsell-card__select {
+  display: block;
+  width: 100%;
+  padding: 0.45rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.7rem;
+  background: #fff;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dije-upsell-card__select:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.dije-upsell-card.is-selected .dije-upsell-card__select {
+  border-color: rgb(var(--color-foreground));
+  box-shadow: 0 0 0 1px rgb(var(--color-foreground));
+}
+
+.dije-upsell-card__media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 0.45rem;
+  background: #f4f0e8;
+}
+
+.dije-upsell-card .product-overlay-badge,
+.dije-upsell-card .product-savings-badge,
+.dije-upsell-card .product-badge {
+  z-index: 1;
+}
+
+.dije-upsell-card__image,
+.dije-upsell-card__media .placeholder-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dije-upsell-card__info {
+  padding-top: 0.45rem;
+}
+
+.dije-upsell-card__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
+}
+
+.dije-upsell-card__price {
+  margin-top: 0.25rem;
+}
+
+.dije-upsell-card__price .price,
+.dije-upsell-card__price .price .price-item {
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.dije-upsell-card .product-savings-badge,
+.dije-upsell-card .product-badge {
+  font-size: 0.58rem;
+  padding: 0.15rem 0.3rem;
+  line-height: 1.1;
+}
+
+.dije-upsell-card .product-savings-badge__icon {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.dije-upsell__action {
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dije-upsell__action[hidden] {
+  display: none !important;
+}
+
+.dije-upsell__action.is-visible {
+  display: block;
+}
+
+.dije-upsell__action-title {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.dije-upsell__variants {
+  margin-bottom: 0.7rem;
+}
+
+.dije-upsell__variants-fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.dije-upsell__variant-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.dije-upsell__variant-option:has(input:checked) {
+  border-color: rgb(var(--color-foreground));
+  box-shadow: 0 0 0 1px rgb(var(--color-foreground));
+}
+
+.dije-upsell__variant-option input {
+  margin: 0;
+}
+
+.dije-upsell__add-button {
+  position: relative;
+}
+
+.dije-upsell__add-button .loading__spinner {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.dije-upsell__add-button.loading .dije-upsell__add-button-text {
+  opacity: 0;
+}
+
+.dije-upsell__error {
+  margin: 0.5rem 0 0;
+  color: #b42318;
+}
+
+@media screen and (min-width: 750px) {
+  .dije-upsell__slide {
+    flex: 0 0 31%;
+    width: 31%;
+    min-width: 31%;
+    max-width: 31%;
+  }
+
+  .dije-upsell-card__title {
+    font-size: 0.85rem;
+  }
+}

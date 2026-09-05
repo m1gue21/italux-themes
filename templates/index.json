@@ -1,0 +1,523 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_7PDidd": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_jLR4bx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_2_sept_2026_21_47_28.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_bMhadH": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/WhatsApp_Image_2026-03-03_at_3.15.33_PM_a1be8ee0-e30f-4493-8df3-60b812811062.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "ADQUIERELO AQUI",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "top-left",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_LadpX9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_6266.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": true,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        }
+      },
+      "block_order": [
+        "slide_jLR4bx",
+        "slide_bMhadH",
+        "slide_LadpX9"
+      ],
+      "disabled": true,
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "large",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 3,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Presentación de diapositivas sobre tu marca"
+      }
+    },
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_UMLQe6": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text_UMLQe6",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_2_sept_2026_21_47_28.png",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "featured_collection_44gWWP": {
+      "type": "featured-collection",
+      "disabled": true,
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "san-valentin",
+        "products_to_show": 9,
+        "title": "<strong>SAN VALENTIN</strong> ♥️",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "fake_review_count": true,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "announcement_strip_1": {
+      "type": "announcement-bar-strip",
+      "blocks": {
+        "a1": {
+          "type": "announcement",
+          "settings": {
+            "text": "🤝 ENVIO GRATIS - PAGA AL RECIBIR",
+            "link": ""
+          }
+        },
+        "a2": {
+          "type": "announcement",
+          "settings": {
+            "text": "⏰ 25% OFF - HOY PRODUCTOS SELECCIONADOS",
+            "link": ""
+          }
+        },
+        "a3": {
+          "type": "announcement",
+          "settings": {
+            "text": "💵 RECIBIMOS TODOS LOS MEDIOS DE PAGO 💳",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-3",
+        "change_slides_speed": 5,
+        "show_line_separator": true
+      }
+    },
+    "collection_list_dnGrid": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_HBL4E3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cadenas-caballero-1"
+          }
+        },
+        "featured_collection_d9wpUV": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cadenas-dama"
+          }
+        },
+        "featured_collection_pGtYFc": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cadena-pulsera-1"
+          }
+        },
+        "featured_collection_JGMVP4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cadena-dije-caballero"
+          }
+        },
+        "featured_collection_7T4yeD": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "pulseras"
+          }
+        },
+        "featured_collection_9NA43k": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cadena-dije-dama"
+          }
+        },
+        "featured_collection_aP4dn3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "pulseras-balin"
+          }
+        },
+        "featured_collection_8Q3kUC": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dijes"
+          }
+        },
+        "featured_collection_HjMKCi": {
+          "type": "featured_collection",
+          "disabled": true,
+          "settings": {
+            "collection": "oro-blanco"
+          }
+        },
+        "featured_collection_GABBKA": {
+          "type": "featured_collection",
+          "disabled": true,
+          "settings": {
+            "collection": "san-valentin"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_HBL4E3",
+        "featured_collection_d9wpUV",
+        "featured_collection_pGtYFc",
+        "featured_collection_JGMVP4",
+        "featured_collection_7T4yeD",
+        "featured_collection_9NA43k",
+        "featured_collection_aP4dn3",
+        "featured_collection_8Q3kUC",
+        "featured_collection_HjMKCi",
+        "featured_collection_GABBKA"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "COMPRA POR CATEGORIAS",
+        "heading_size": "h2",
+        "layout_style": "shop_by_categories",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_view_all": false,
+        "grid_on_mobile": true,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "announcement_strip_2": {
+      "type": "announcement-bar-strip",
+      "blocks": {
+        "b1": {
+          "type": "announcement",
+          "settings": {
+            "text": "🤝 Envío gratis - Paga al recibir",
+            "link": ""
+          }
+        },
+        "b2": {
+          "type": "announcement",
+          "settings": {
+            "text": "⏰ 30% Descuentos en toda la tienda",
+            "link": ""
+          }
+        },
+        "b3": {
+          "type": "announcement",
+          "settings": {
+            "text": "💵 Recibimos todos lo medios de pago 💳",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "change_slides_speed": 5,
+        "show_line_separator": true
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "cadenas-caballero-1",
+        "products_to_show": 9,
+        "title": "<strong>CADENAS CABALLERO</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "fake_review_count": true,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_BawXL4": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "cadena-pulsera-1",
+        "products_to_show": 9,
+        "title": "<strong>COMBOS CADENA + PULSERA</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "fake_review_count": true,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_YpHip7": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "cadena-dije-caballero",
+        "products_to_show": 9,
+        "title": "<strong>CADENAS + DIJE CABALLERO</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "fake_review_count": true,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_CLXznr": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "pulseras-balin",
+        "products_to_show": 9,
+        "title": "<strong>PULSERAS BALINERIA</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "fake_review_count": true,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_b68Qn9": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "pulseras",
+        "products_to_show": 9,
+        "title": "<strong>PULSERAS</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "fake_review_count": true,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_YRYid9": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "cadena-dije-dama",
+        "products_to_show": 9,
+        "title": "<strong>CADENA + DIJE DAMA</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "fake_review_count": true,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "slideshow_7PDidd",
+    "image_banner",
+    "featured_collection_44gWWP",
+    "announcement_strip_1",
+    "collection_list_dnGrid",
+    "announcement_strip_2",
+    "featured_collection",
+    "featured_collection_BawXL4",
+    "featured_collection_YpHip7",
+    "featured_collection_CLXznr",
+    "featured_collection_b68Qn9",
+    "featured_collection_YRYid9"
+  ]
+}

@@ -1,0 +1,213 @@
+{%- comment -%}
+  Dos carruseles de reseñas: fila superior hacia la derecha, inferior hacia la izquierda.
+  Tarjetas simples con avatar circular + texto.
+{%- endcomment -%}
+
+{%- style -%}
+  .reviews-dual-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    overflow: hidden;
+  }
+  @media (min-width: 750px) {
+    .reviews-dual-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .reviews-dual-{{ section.id }} .reviews-dual-mask {
+    overflow: hidden;
+    padding: 0.5rem 0;
+  }
+  .reviews-dual-{{ section.id }} .reviews-dual-mask + .reviews-dual-mask {
+    margin-top: 0.5rem;
+  }
+  .reviews-dual-{{ section.id }} .reviews-dual-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    padding: 0 1.5rem;
+  }
+  .reviews-dual-{{ section.id }} .reviews-dual-track--right {
+    animation: reviews-dual-marquee-right-{{ section.id }} 42s linear infinite;
+  }
+  .reviews-dual-{{ section.id }} .reviews-dual-track--left {
+    animation: reviews-dual-marquee-left-{{ section.id }} 42s linear infinite;
+  }
+  .reviews-dual-{{ section.id }} .reviews-dual-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes reviews-dual-marquee-right-{{ section.id }} {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  @keyframes reviews-dual-marquee-left-{{ section.id }} {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .reviews-dual-{{ section.id }} .reviews-dual-card {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    min-width: 280px;
+    max-width: 360px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .reviews-dual-{{ section.id }} .reviews-dual-avatar {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .reviews-dual-{{ section.id }} .reviews-dual-avatar-placeholder {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e4e6eb 0%, #bcc0c4 100%);
+  }
+  .reviews-dual-{{ section.id }} .reviews-dual-text {
+    font-size: 1.08rem;
+    line-height: 1.45;
+    color: #1a1a1a;
+    margin: 0;
+  }
+  @media (max-width: 749px) {
+    .reviews-dual-{{ section.id }} .reviews-dual-card {
+      min-width: 260px;
+      padding: 1rem;
+    }
+    .reviews-dual-{{ section.id }} .reviews-dual-avatar,
+    .reviews-dual-{{ section.id }} .reviews-dual-avatar-placeholder {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+    }
+    .reviews-dual-{{ section.id }} .reviews-dual-text {
+      font-size: 1.02rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="reviews-dual-{{ section.id }} color-{{ section.settings.color_scheme }} gradient isolate" aria-label="Reseñas de clientes">
+  {%- assign blocks_arr = section.blocks | where: 'type', 'review' -%}
+  {%- if blocks_arr.size > 0 -%}
+    <div class="reviews-dual-mask">
+      <div class="reviews-dual-track reviews-dual-track--right">
+        {%- for copy in (1..2) -%}
+          {%- for block in blocks_arr -%}
+            <article class="reviews-dual-card" {% if copy == 1 %}{{ block.shopify_attributes }}{% endif %}>
+              {%- if block.settings.avatar_url != blank -%}
+                <img class="reviews-dual-avatar" src="{{ block.settings.avatar_url }}" alt="" width="56" height="56" loading="lazy">
+              {%- elsif block.settings.avatar != blank -%}
+                <img class="reviews-dual-avatar" src="{{ block.settings.avatar | image_url: width: 112 }}" alt="" width="56" height="56" loading="lazy">
+              {%- else -%}
+                <div class="reviews-dual-avatar-placeholder"></div>
+              {%- endif -%}
+              <p class="reviews-dual-text">{{ block.settings.content | default: 'Excelente producto, muy recomendado.' }}</p>
+            </article>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="reviews-dual-mask">
+      <div class="reviews-dual-track reviews-dual-track--left">
+        {%- for copy in (1..2) -%}
+          {%- for block in blocks_arr -%}
+            <article class="reviews-dual-card" {% if copy == 1 %}{{ block.shopify_attributes }}{% endif %}>
+              {%- if block.settings.avatar_url != blank -%}
+                <img class="reviews-dual-avatar" src="{{ block.settings.avatar_url }}" alt="" width="56" height="56" loading="lazy">
+              {%- elsif block.settings.avatar != blank -%}
+                <img class="reviews-dual-avatar" src="{{ block.settings.avatar | image_url: width: 112 }}" alt="" width="56" height="56" loading="lazy">
+              {%- else -%}
+                <div class="reviews-dual-avatar-placeholder"></div>
+              {%- endif -%}
+              <p class="reviews-dual-text">{{ block.settings.content | default: 'Excelente producto, muy recomendado.' }}</p>
+            </article>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Carruseles duales reviews",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "options": [
+        { "value": "scheme-1", "label": "Claro" },
+        { "value": "scheme-2", "label": "Oscuro" }
+      ],
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding superior",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding inferior",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Reseña",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Foto de perfil"
+        },
+        {
+          "type": "url",
+          "id": "avatar_url",
+          "label": "URL de foto (prioridad)"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Texto de la reseña",
+          "default": "Buena calidad, los recomiendo."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Carruseles duales reviews",
+      "blocks": [
+        { "type": "review", "settings": { "content": "Buena calidad, los recomiendo." } },
+        { "type": "review", "settings": { "content": "Mi cadena sigue intacta después de meses." } },
+        { "type": "review", "settings": { "content": "El mismo tono del oro, no se despinta." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

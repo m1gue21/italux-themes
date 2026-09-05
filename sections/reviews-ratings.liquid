@@ -1,0 +1,486 @@
+{%- comment -%}
+  Sección de reseñas y calificaciones con modal de estadísticas.
+  Estilo: grid de cards, contador, modal con distribución de estrellas.
+{%- endcomment -%}
+
+{%- assign blocks_arr = section.blocks | where: 'type', 'review' -%}
+{%- assign total_reviews = blocks_arr.size -%}
+{%- assign sum_rating = 0 -%}
+{%- assign count_5 = 0 -%}
+{%- assign count_4 = 0 -%}
+{%- assign count_3 = 0 -%}
+{%- assign count_2 = 0 -%}
+{%- assign count_1 = 0 -%}
+{%- for block in blocks_arr -%}
+  {%- assign r = block.settings.rating | default: 5 | round -%}
+  {%- assign sum_rating = sum_rating | plus: r -%}
+  {%- case r -%}
+    {%- when 5 -%}{%- assign count_5 = count_5 | plus: 1 -%}
+    {%- when 4 -%}{%- assign count_4 = count_4 | plus: 1 -%}
+    {%- when 3 -%}{%- assign count_3 = count_3 | plus: 1 -%}
+    {%- when 2 -%}{%- assign count_2 = count_2 | plus: 1 -%}
+    {%- else -%}{%- assign count_1 = count_1 | plus: 1 -%}
+  {%- endcase -%}
+{%- endfor -%}
+{%- assign avg_rating = 0 -%}
+{%- assign avg_rating_display = '0' -%}
+{%- if total_reviews > 0 -%}
+  {%- assign avg_x = sum_rating | times: 10 | divided_by: total_reviews -%}
+  {%- assign avg_int = avg_x | divided_by: 10 -%}
+  {%- assign avg_dec = avg_x | modulo: 10 -%}
+  {%- assign avg_rating = avg_int -%}
+  {%- capture avg_rating_display -%}{{ avg_int }}.{{ avg_dec }}{%- endcapture -%}
+{%- endif -%}
+{%- assign max_count = count_5 -%}
+{%- if count_4 > max_count -%}{%- assign max_count = count_4 -%}{%- endif -%}
+{%- if count_3 > max_count -%}{%- assign max_count = count_3 -%}{%- endif -%}
+{%- if count_2 > max_count -%}{%- assign max_count = count_2 -%}{%- endif -%}
+{%- if count_1 > max_count -%}{%- assign max_count = count_1 -%}{%- endif -%}
+{%- if max_count == 0 -%}{%- assign max_count = 1 -%}{%- endif -%}
+{%- assign bar_divisor = total_reviews -%}
+{%- if bar_divisor == 0 -%}{%- assign bar_divisor = 1 -%}{%- endif -%}
+
+{%- style -%}
+  .reviews-ratings-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media (min-width: 750px) {
+    .reviews-ratings-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .reviews-ratings-{{ section.id }} {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .reviews-ratings-{{ section.id }} .rr-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    min-width: 0;
+  }
+  .reviews-ratings-{{ section.id }} .rr-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .reviews-ratings-{{ section.id }} .rr-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  .reviews-ratings-{{ section.id }} .rr-stars {
+    display: flex;
+    gap: 2px;
+    color: #e5b318;
+  }
+  .reviews-ratings-{{ section.id }} .rr-stars svg {
+    width: 24px;
+    height: 24px;
+  }
+  .reviews-ratings-{{ section.id }} .rr-stars .rr-star-empty {
+    color: #e5e5e5;
+  }
+  .reviews-ratings-{{ section.id }} .rr-count {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+  }
+  .reviews-ratings-{{ section.id }} .rr-chevron {
+    width: 20px;
+    height: 20px;
+    color: #666;
+    transition: transform 0.2s;
+  }
+  .reviews-ratings-{{ section.id }} .rr-summary[aria-expanded="true"] .rr-chevron {
+    transform: rotate(180deg);
+  }
+  .reviews-ratings-{{ section.id }} .rr-modal {
+    display: none;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .reviews-ratings-{{ section.id }} .rr-modal[data-open="true"] {
+    display: block;
+  }
+  .reviews-ratings-{{ section.id }} .rr-modal-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .reviews-ratings-{{ section.id }} .rr-modal-star {
+    width: 48px;
+    height: 48px;
+    color: #e5b318;
+  }
+  .reviews-ratings-{{ section.id }} .rr-modal-avg {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .reviews-ratings-{{ section.id }} .rr-modal-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .reviews-ratings-{{ section.id }} .rr-modal-bar-wrap {
+    flex: 1;
+    min-width: 80px;
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    display: block;
+  }
+  .reviews-ratings-{{ section.id }} .rr-modal-bar {
+    display: block;
+    height: 100%;
+    background: #c9a227;
+    border-radius: 6px;
+    transition: width 0.3s ease;
+    box-sizing: border-box;
+  }
+  .reviews-ratings-{{ section.id }} .rr-modal-row .rr-stars {
+    min-width: 110px;
+    font-size: 1.5rem;
+    color: #e5b318;
+    letter-spacing: 2px;
+  }
+  .reviews-ratings-{{ section.id }} .rr-modal-row .rr-num {
+    min-width: 28px;
+    font-weight: 500;
+    color: #666;
+  }
+  .reviews-ratings-{{ section.id }} .rr-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    min-width: 0;
+  }
+  @media (min-width: 750px) {
+    .reviews-ratings-{{ section.id }} .rr-grid {
+      gap: 1rem;
+    }
+  }
+  .reviews-ratings-{{ section.id }} .rr-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 10px;
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card-author {
+    font-weight: 700;
+    font-size: 1.08rem;
+    line-height: 1.25;
+    color: #1a1a1a;
+    letter-spacing: -0.01em;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card-date {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    color: #666;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1877f2;
+    margin-left: 4px;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card-verified-badge {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card-verified-text {
+    color: #1877f2;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card-img-wrap {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1;
+    height: auto;
+    margin: 0.35rem 0 0.5rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f0f0f0;
+    display: block;
+    min-width: 0;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    vertical-align: top;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card-body {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card-text {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1a1a1a;
+    hyphens: auto;
+    text-align: left;
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .reviews-ratings-{{ section.id }} .rr-card .rr-stars svg {
+    width: 20px;
+    height: 20px;
+  }
+  @media (max-width: 749px) {
+    .reviews-ratings-{{ section.id }} .rr-card {
+      padding: 1.15rem;
+    }
+    .reviews-ratings-{{ section.id }} .rr-card-author {
+      font-size: 1.02rem;
+    }
+    .reviews-ratings-{{ section.id }} .rr-card-img-wrap {
+      max-width: 160px;
+    }
+    .reviews-ratings-{{ section.id }} .rr-card-text {
+      font-size: 0.95rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="reviews-ratings-{{ section.id }} color-{{ section.settings.color_scheme }} gradient isolate" aria-label="Reseñas y calificaciones">
+  <div class="rr-inner">
+    <div class="rr-header">
+      <button type="button" class="rr-summary" aria-expanded="false" data-rr-toggle="{{ section.id }}" aria-controls="rr-modal-{{ section.id }}">
+        <span class="rr-stars" aria-hidden="true">
+          {%- for star_idx in (1..5) -%}
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          {%- endfor -%}
+        </span>
+        <span class="rr-count">{{ total_reviews }} Reseñas</span>
+        <svg class="rr-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+
+    <div id="rr-modal-{{ section.id }}" class="rr-modal" data-open="false" role="dialog" aria-label="Distribución de calificaciones">
+      <div class="rr-modal-top">
+        <svg class="rr-modal-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <span class="rr-modal-avg">{{ avg_rating_display }}</span>
+      </div>
+      <div class="rr-modal-row">
+        <span class="rr-stars">★★★★★</span>
+        <div class="rr-modal-bar-wrap"><div class="rr-modal-bar" style="--rr-bar-width: {{ count_5 | times: 100 | divided_by: bar_divisor }}%; width: {{ count_5 | times: 100 | divided_by: bar_divisor }}%;"></div></div>
+        <span class="rr-num">({{ count_5 }})</span>
+      </div>
+      <div class="rr-modal-row">
+        <span class="rr-stars">★★★★☆</span>
+        <div class="rr-modal-bar-wrap"><div class="rr-modal-bar" style="--rr-bar-width: {{ count_4 | times: 100 | divided_by: bar_divisor }}%; width: {{ count_4 | times: 100 | divided_by: bar_divisor }}%;"></div></div>
+        <span class="rr-num">({{ count_4 }})</span>
+      </div>
+      <div class="rr-modal-row">
+        <span class="rr-stars">★★★☆☆</span>
+        <div class="rr-modal-bar-wrap"><div class="rr-modal-bar" style="--rr-bar-width: {{ count_3 | times: 100 | divided_by: bar_divisor }}%; width: {{ count_3 | times: 100 | divided_by: bar_divisor }}%;"></div></div>
+        <span class="rr-num">({{ count_3 }})</span>
+      </div>
+      <div class="rr-modal-row">
+        <span class="rr-stars">★★☆☆☆</span>
+        <div class="rr-modal-bar-wrap"><div class="rr-modal-bar" style="--rr-bar-width: {{ count_2 | times: 100 | divided_by: bar_divisor }}%; width: {{ count_2 | times: 100 | divided_by: bar_divisor }}%;"></div></div>
+        <span class="rr-num">({{ count_2 }})</span>
+      </div>
+      <div class="rr-modal-row">
+        <span class="rr-stars">★☆☆☆☆</span>
+        <div class="rr-modal-bar-wrap"><div class="rr-modal-bar" style="--rr-bar-width: {{ count_1 | times: 100 | divided_by: bar_divisor }}%; width: {{ count_1 | times: 100 | divided_by: bar_divisor }}%;"></div></div>
+        <span class="rr-num">({{ count_1 }})</span>
+      </div>
+    </div>
+
+    <div class="rr-grid">
+      {%- for block in blocks_arr -%}
+        {%- assign r = block.settings.rating | default: 5 | round -%}
+        <article class="rr-card" {{ block.shopify_attributes }}>
+          <div class="rr-card-top">
+            <div>
+              <p class="rr-card-author">
+                {{ block.settings.author_name | default: 'Cliente' }}
+                {%- if block.settings.verified -%}
+                  <span class="rr-card-verified">
+                    <img src="{{ 'verified.png' | asset_url }}" alt="" width="18" height="18" class="rr-card-verified-badge" loading="lazy">
+                    <span class="rr-card-verified-text">Verificado</span>
+                  </span>
+                {%- endif -%}
+              </p>
+              <p class="rr-card-date">{{ block.settings.date | default: 'Hace poco' }}</p>
+            </div>
+          </div>
+          <div class="rr-stars">
+            {%- for star_idx in (1..5) -%}
+              {%- if star_idx <= r -%}
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- else -%}
+                <svg class="rr-star-empty" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+          {%- if block.settings.image != blank or block.settings.image_url != blank -%}
+            <div class="rr-card-img-wrap">
+              {%- if block.settings.image_url != blank -%}
+                <img class="rr-card-img" src="{{ block.settings.image_url }}" alt="" width="240" height="160" loading="lazy">
+              {%- else -%}
+                <img class="rr-card-img" src="{{ block.settings.image | image_url: width: 480 }}" alt="" width="240" height="160" loading="lazy">
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          <div class="rr-card-body">
+            <p class="rr-card-text">{{ block.settings.content | default: 'Excelente producto.' }}</p>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-rr-toggle]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var id = this.getAttribute('data-rr-toggle');
+      var modal = document.getElementById('rr-modal-' + id);
+      var open = modal.getAttribute('data-open') === 'true';
+      modal.setAttribute('data-open', !open);
+      btn.setAttribute('aria-expanded', !open);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Reseñas y calificaciones",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "options": [
+        { "value": "scheme-1", "label": "Claro" },
+        { "value": "scheme-2", "label": "Oscuro" }
+      ],
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding superior",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding inferior",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Reseña",
+      "settings": [
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Nombre",
+          "default": "Luisa V."
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Fecha",
+          "default": "21/1/2026"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Estrellas",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Texto",
+          "default": "Excelente producto."
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Mostrar badge Verificado",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "url",
+          "id": "image_url",
+          "label": "URL de imagen (prioridad)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reseñas y calificaciones",
+      "blocks": [
+        { "type": "review", "settings": { "author_name": "Luisa V.", "date": "21/1/2026", "rating": 4, "content": "Prefiero el oro laminado por durabilidad y apariencia." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

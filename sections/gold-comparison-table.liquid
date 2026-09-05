@@ -1,0 +1,263 @@
+{%- comment -%}
+  Tabla comparativa de tipos de oro. Columna central resaltada con gradiente dorado.
+{%- endcomment -%}
+
+{%- style -%}
+  .gold-comp-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media (min-width: 750px) {
+    .gold-comp-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .gold-comp-{{ section.id }} .gold-comp-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .gold-comp-{{ section.id }} .gold-comp-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .gold-comp-{{ section.id }} .gold-comp-table-wrap {
+    background: #fff;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .gold-comp-{{ section.id }} table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.1rem;
+  }
+  .gold-comp-{{ section.id }} th,
+  .gold-comp-{{ section.id }} td {
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.08);
+    vertical-align: middle;
+  }
+  .gold-comp-{{ section.id }} th {
+    font-weight: 700;
+    font-size: 1.15rem;
+    background: #f8f6f2;
+  }
+  .gold-comp-{{ section.id }} td {
+    font-weight: 400;
+    background: #faf9f7;
+  }
+  .gold-comp-{{ section.id }} th.gold-comp-highlight,
+  .gold-comp-{{ section.id }} td.gold-comp-highlight {
+    background: linear-gradient(180deg, #f5e6c8 0%, #e8d4a8 50%, #dfc995 100%);
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+  .gold-comp-{{ section.id }} th:first-child,
+  .gold-comp-{{ section.id }} td:first-child {
+    background: #f8f6f2;
+  }
+  .gold-comp-{{ section.id }} th:last-child,
+  .gold-comp-{{ section.id }} td:last-child {
+    background: #f8f6f2;
+  }
+  .gold-comp-{{ section.id }} th.gold-comp-highlight,
+  .gold-comp-{{ section.id }} td.gold-comp-highlight {
+    background: linear-gradient(180deg, #f5e6c8 0%, #e8d4a8 50%, #dfc995 100%);
+  }
+  .gold-comp-{{ section.id }} .gold-comp-footer {
+    margin-top: 1.5rem;
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: rgba(var(--color-foreground), 0.85);
+  }
+  @media (max-width: 749px) {
+    .gold-comp-{{ section.id }} .gold-comp-inner {
+      padding: 0 1rem;
+    }
+    .gold-comp-{{ section.id }} table {
+      font-size: 1.15rem;
+    }
+    .gold-comp-{{ section.id }} th {
+      font-size: 1.2rem;
+      padding: 1.25rem 0.75rem;
+    }
+    .gold-comp-{{ section.id }} td {
+      padding: 1.25rem 0.75rem;
+      font-size: 1.15rem;
+      line-height: 1.4;
+    }
+    .gold-comp-{{ section.id }} th.gold-comp-highlight,
+    .gold-comp-{{ section.id }} td.gold-comp-highlight {
+      font-size: 1.35rem;
+    }
+    .gold-comp-{{ section.id }} .gold-comp-footer {
+      font-size: 1.2rem;
+      line-height: 1.55;
+    }
+  }
+{%- endstyle -%}
+
+<section class="gold-comp-{{ section.id }} color-{{ section.settings.color_scheme }} gradient isolate" aria-label="Comparativa de oro">
+  <div class="gold-comp-inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="title inline-richtext {{ section.settings.heading_size }} gold-comp-title">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    <div class="gold-comp-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="{% if section.settings.highlight_column == 1 %}gold-comp-highlight{% endif %}">{{ section.settings.col1_header | default: 'Oro macizo' }}</th>
+            <th class="{% if section.settings.highlight_column == 2 %}gold-comp-highlight{% endif %}">{{ section.settings.col2_header | default: 'Nuestro Oro laminado' }}</th>
+            <th class="{% if section.settings.highlight_column == 3 %}gold-comp-highlight{% endif %}">{{ section.settings.col3_header | default: 'Baño de oro' }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'row' -%}
+              <tr {{ block.shopify_attributes }}>
+                <td class="{% if section.settings.highlight_column == 1 %}gold-comp-highlight{% endif %}">{{ block.settings.cell_1 | default: '—' }}</td>
+                <td class="{% if section.settings.highlight_column == 2 %}gold-comp-highlight{% endif %}">{{ block.settings.cell_2 | default: '—' }}</td>
+                <td class="{% if section.settings.highlight_column == 3 %}gold-comp-highlight{% endif %}">{{ block.settings.cell_3 | default: '—' }}</td>
+              </tr>
+            {%- endif -%}
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+
+    {%- if section.settings.footer_text != blank -%}
+      <p class="gold-comp-footer">{{ section.settings.footer_text }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tabla comparativa oro",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "options": [
+        { "value": "h0", "label": "Extra grande" },
+        { "value": "h1", "label": "Grande" },
+        { "value": "h2", "label": "Mediano" },
+        { "value": "h3", "label": "Pequeño" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "text",
+      "id": "col1_header",
+      "label": "Columna 1 - encabezado",
+      "default": "Oro macizo"
+    },
+    {
+      "type": "text",
+      "id": "col2_header",
+      "label": "Columna 2 - encabezado",
+      "default": "Nuestro Oro laminado"
+    },
+    {
+      "type": "text",
+      "id": "col3_header",
+      "label": "Columna 3 - encabezado",
+      "default": "Baño de oro"
+    },
+    {
+      "type": "range",
+      "id": "highlight_column",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Columna resaltada (gradiente dorado)",
+      "default": 2
+    },
+    {
+      "type": "textarea",
+      "id": "footer_text",
+      "label": "Texto debajo de la tabla",
+      "default": "Invertir en Kevin Jewelry es elegir equilibrio, respaldo y una joya que sí vale la pena."
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "options": [
+        { "value": "scheme-1", "label": "Claro" },
+        { "value": "scheme-2", "label": "Oscuro" }
+      ],
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding superior",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding inferior",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Fila",
+      "settings": [
+        {
+          "type": "text",
+          "id": "cell_1",
+          "label": "Celda 1"
+        },
+        {
+          "type": "text",
+          "id": "cell_2",
+          "label": "Celda 2"
+        },
+        {
+          "type": "text",
+          "id": "cell_3",
+          "label": "Celda 3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabla comparativa oro",
+      "blocks": [
+        { "type": "row", "settings": { "cell_1": "100% Oro puro", "cell_2": "Múltiples láminas de Oro 18k", "cell_3": "Capa superficial de oro" } },
+        { "type": "row", "settings": { "cell_1": "Garantía de por vida", "cell_2": "Hasta 5 años vida útil comprobada", "cell_3": "Pierde el tono con rapidez" } },
+        { "type": "row", "settings": { "cell_1": "Precio elevado", "cell_2": "Inversión inteligente", "cell_3": "Precio bajo" } },
+        { "type": "row", "settings": { "cell_1": "No genera alergias", "cell_2": "No genera alergias", "cell_3": "Puede causar alergia" } },
+        { "type": "row", "settings": { "cell_1": "Ideal uso diario", "cell_2": "Ideal uso diario", "cell_3": "Uso ocasional" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
