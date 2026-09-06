@@ -110,6 +110,34 @@
   }
 {%- endstyle -%}
 
+{%- if section.settings.image_fit == 'contain' -%}
+  {%- comment -%}
+    Una imagen cuadrada a todo el ancho no puede verse completa y ser
+    baja a la vez. En este modo no se recorta: se muestra entera y los
+    lados los rellena una copia difuminada de la misma imagen.
+  {%- endcomment -%}
+  {%- style -%}
+    #Slider-{{ section.id }} .banner__media > img,
+    #Slider-{{ section.id }} .banner__media > picture > img {
+      object-fit: contain;
+      z-index: 1;
+    }
+
+    #Slider-{{ section.id }} .slideshow__backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(28px) brightness(0.65);
+      transform: scale(1.15);
+      z-index: 0;
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
 <slideshow-component
   class="slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
   role="region"
@@ -207,6 +235,14 @@
       >
         <div class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
           {%- if block.settings.image -%}
+            {%- if section.settings.image_fit == 'contain' -%}
+              {%- assign backdrop_img = block.settings.image_mobile | default: block.settings.image -%}
+              <div
+                class="slideshow__backdrop"
+                style="background-image: url({{ backdrop_img | image_url: width: 400 }});"
+                aria-hidden="true"
+              ></div>
+            {%- endif -%}
             {%- liquid
               assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round
               if section.settings.image_behavior == 'ambient'
@@ -466,6 +502,23 @@
         }
       ],
       "default": "same"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Ajuste de la imagen",
+      "info": "«Recortar» llena todo el ancho pero corta la imagen. «Mostrar completa» no corta nada: rellena los lados con una versión difuminada de la misma imagen.",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Recortar para llenar"
+        },
+        {
+          "value": "contain",
+          "label": "Mostrar completa (sin recorte)"
+        }
+      ],
+      "default": "cover"
     },
     {
       "type": "select",
