@@ -135,6 +135,15 @@
       transform: scale(1.15);
       z-index: 0;
     }
+
+    /* Sin tope, en una pantalla ancha la imagen queda como una franja
+       central y el difuminado se come el resto. */
+    @media screen and (min-width: 750px) {
+      #Slider-{{ section.id }} {
+        max-width: {{ section.settings.contain_max_width }}px;
+        margin-inline: auto;
+      }
+    }
   {%- endstyle -%}
 {%- endif -%}
 
@@ -519,6 +528,17 @@
         }
       ],
       "default": "cover"
+    },
+    {
+      "type": "range",
+      "id": "contain_max_width",
+      "min": 700,
+      "max": 1800,
+      "step": 50,
+      "unit": "px",
+      "label": "Ancho máximo del hero",
+      "info": "Solo aplica con «Mostrar completa». Cuanto más ancho, más difuminado se ve a los lados en pantallas grandes.",
+      "default": 1200
     },
     {
       "type": "select",
