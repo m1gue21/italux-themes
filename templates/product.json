@@ -268,12 +268,6 @@
             "label_files": "archivos"
           }
         },
-        "payment_methods": {
-          "type": "payment_methods",
-          "settings": {
-            "alt": "Medios de pago aceptados: Visa, Mastercard, PayU, PSE, Nequi, Daviplata y Addi"
-          }
-        },
         "addi_notice": {
           "type": "addi_notice",
           "settings": {
@@ -281,6 +275,12 @@
             "installments": 6,
             "link_label": "Pide un cupo",
             "link_url": ""
+          }
+        },
+        "payment_methods": {
+          "type": "payment_methods",
+          "settings": {
+            "alt": "Medios de pago aceptados: Visa, Mastercard, PayU, PSE, Nequi, Daviplata y Addi"
           }
         }
       },
@@ -317,11 +317,11 @@
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "contain",
-        "gallery_layout": "stacked",
+        "gallery_layout": "thumbnail_slider",
         "mobile_thumbnails": "show",
         "media_position": "left",
         "image_zoom": "lightbox",
-        "hide_variants": true,
+        "hide_variants": false,
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 0
@@ -330,10 +330,18 @@
     "video_slider": {
       "type": "video-slider",
       "blocks": {
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/b7acfab11811412182fbd0d8942f9c57.mov",
+            "alt": "",
+            "autoplay": true
+          }
+        },
         "video_1": {
           "type": "video",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/a5b07de02bdf46ada3c90b0fa3606920.mp4",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/ff7125c82ee34c6d90e92cdfeef63bc4.mov",
             "alt": "",
             "autoplay": true
           }
@@ -341,7 +349,7 @@
         "video_2": {
           "type": "video",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/48068a3a8a4848a1ba9f27fc44e63051.mp4",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/d502e54bdcc941399ded20930b6dc2c3.mov",
             "alt": "",
             "autoplay": true
           }
@@ -354,20 +362,21 @@
             "autoplay": true
           }
         },
-        "video_4": {
+        "video_86PwLV": {
           "type": "video",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/b7acfab11811412182fbd0d8942f9c57.mov",
+            "video_url": "",
             "alt": "",
             "autoplay": true
           }
         }
       },
       "block_order": [
+        "video_4",
         "video_1",
         "video_2",
         "video_3",
-        "video_4"
+        "video_86PwLV"
       ],
       "settings": {
         "heading": "",
@@ -679,6 +688,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "Otros clientes también buscaron",
         "heading_size": "h2",
@@ -705,6 +715,101 @@
       "type": "apps",
       "settings": {
         "include_margins": true
+      }
+    },
+    "1780102224b8e0f46b": {
+      "type": "apps",
+      "blocks": {
+        "revie_reviews_por_whatsapp_app_block_4_Jb6eke": {
+          "type": "shopify://apps/revie-reviews-por-whatsapp/blocks/app-block-4/32a49769-cfbe-4f29-8b19-1ae20fdb2abe",
+          "disabled": true,
+          "settings": {
+            "title": "{star} {count} Reviews",
+            "format": "1",
+            "image": "1",
+            "from": "1",
+            "onlinephotos": "1",
+            "title_color": "#000000",
+            "title_size": 24,
+            "title_pos": "flex-start",
+            "date": true,
+            "star_color": "#000000",
+            "size": 15,
+            "back_color": "#ffffff",
+            "text_color": "#121212",
+            "size_text": 14,
+            "max_reviews": 10,
+            "nextButtonText": "Mostrar más reseñas",
+            "productButtonText": "Ver producto",
+            "max_width": 1200,
+            "content_padding": 22,
+            "max_width_image": 24,
+            "label_reviews": "reseñas",
+            "label_average": "promedio",
+            "label_verified": "Reseñas verificadas",
+            "label_photos": "Fotos de clientes",
+            "label_seeall": "Ver todas",
+            "label_chip_all": "Todas",
+            "label_chip_photo": "Con foto",
+            "label_chip_video": "Con video",
+            "label_chip_audio": "Con audio",
+            "label_chip_top": "5 estrellas",
+            "label_products_all": "Todos los productos",
+            "label_sort_featured": "Destacadas",
+            "label_sort_recent": "Más recientes",
+            "label_sort_top": "Mejor puntuadas",
+            "label_sort_old": "Más antiguas",
+            "label_response": "Respuesta de",
+            "label_stories_title": "Videos y fotos de clientes",
+            "stories_ring": "#25d366",
+            "label_wall_title": "Míralo en casas reales"
+          }
+        }
+      },
+      "block_order": [
+        "revie_reviews_por_whatsapp_app_block_4_Jb6eke"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "image_with_text_TFwtUX": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_WHK7VC": {
+          "type": "heading",
+          "settings": {
+            "heading": "<em><strong>SHOWROOM</strong></em>",
+            "heading_size": "h0"
+          }
+        },
+        "text_AR9CiT": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em><strong>En Italux Joyería, tu compra es 100% segura</strong></em></p><p><em>📍Ubicación: Calle 68 #37 - 68, Bosques de bambu D - 801, Pereira.</em></p><p><em>Frente al Mall Palo de agua</em></p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_WHK7VC",
+        "text_AR9CiT"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/italuc_local.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "reviews_ratings": {
@@ -1196,62 +1301,6 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "1780102224b8e0f46b": {
-      "type": "apps",
-      "blocks": {
-        "revie_reviews_por_whatsapp_app_block_4_Jb6eke": {
-          "type": "shopify://apps/revie-reviews-por-whatsapp/blocks/app-block-4/32a49769-cfbe-4f29-8b19-1ae20fdb2abe",
-          "disabled": true,
-          "settings": {
-            "title": "{star} {count} Reviews",
-            "format": "1",
-            "image": "1",
-            "from": "1",
-            "onlinephotos": "1",
-            "title_color": "#000000",
-            "title_size": 24,
-            "title_pos": "flex-start",
-            "date": true,
-            "star_color": "#000000",
-            "size": 15,
-            "back_color": "#ffffff",
-            "text_color": "#121212",
-            "size_text": 14,
-            "max_reviews": 10,
-            "nextButtonText": "Mostrar más reseñas",
-            "productButtonText": "Ver producto",
-            "max_width": 1200,
-            "content_padding": 22,
-            "max_width_image": 24,
-            "label_reviews": "reseñas",
-            "label_average": "promedio",
-            "label_verified": "Reseñas verificadas",
-            "label_photos": "Fotos de clientes",
-            "label_seeall": "Ver todas",
-            "label_chip_all": "Todas",
-            "label_chip_photo": "Con foto",
-            "label_chip_video": "Con video",
-            "label_chip_audio": "Con audio",
-            "label_chip_top": "5 estrellas",
-            "label_products_all": "Todos los productos",
-            "label_sort_featured": "Destacadas",
-            "label_sort_recent": "Más recientes",
-            "label_sort_top": "Mejor puntuadas",
-            "label_sort_old": "Más antiguas",
-            "label_response": "Respuesta de",
-            "label_stories_title": "Videos y fotos de clientes",
-            "stories_ring": "#25d366",
-            "label_wall_title": "Míralo en casas reales"
-          }
-        }
-      },
-      "block_order": [
-        "revie_reviews_por_whatsapp_app_block_4_Jb6eke"
-      ],
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
@@ -1267,7 +1316,8 @@
     "related-products",
     "1768261674b25685fc",
     "176991839020b08c43",
-    "reviews_ratings",
-    "1780102224b8e0f46b"
+    "1780102224b8e0f46b",
+    "image_with_text_TFwtUX",
+    "reviews_ratings"
   ]
 }
