@@ -8,6 +8,10 @@
   - inserta <addi-product-widget> despues de ese nodo
   - en home inserta <addi-home-banner> si data-show-banner es "true"
 
+  OJO con data-element-reference: si trae valor el wrapper hace
+  querySelector y NO cae al respaldo .price. Un selector que no exista
+  deja el widget sin pintar y sin error visible.
+
   Solo se pinta si hay slug e id configurados en Configuracion > Addi.
 {% endcomment %}
 
@@ -18,7 +22,7 @@
 
 {%- if settings.addi_enabled and addi_slug != blank and addi_id != blank -%}
   <script
-    src="https://s3.amazonaws.com/statics.addi.com/shopify/js/shopify-co-widget-wrapper.bundle.min.js"
+    src="https://statics.addi.com/shopify/js/shopify-co-widget-wrapper.bundle.min.js"
     data-name="shopifyAddiWidget"
     data-id="{{ addi_id | escape }}"
     data-ally-slug="{{ addi_slug | escape }}"

@@ -1499,8 +1499,8 @@
         "type": "text",
         "id": "addi_element_reference",
         "label": "Dónde insertarlo",
-        "info": "Selector CSS. El widget se inserta justo después de ese elemento. Por defecto .price",
-        "default": ".price"
+        "info": "Selector CSS. El widget se inserta justo despues de ese elemento. Si el selector no existe el widget no aparece y no avisa: no cae a ningun respaldo.",
+        "default": ".price--large"
       },
       {
         "type": "header",

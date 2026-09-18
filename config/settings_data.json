@@ -223,9 +223,10 @@
         }
       }
     },
-    "addi_enabled": false,
-    "addi_ally_slug": "",
-    "addi_widget_id": ""
+    "addi_enabled": true,
+    "addi_ally_slug": "kevinjewelry-ecommerce",
+    "addi_widget_id": "kevinjewelry",
+    "addi_element_reference": ".price--large"
   },
   "presets": {
     "Dawn": {
