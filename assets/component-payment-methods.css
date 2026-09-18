@@ -1,0 +1,11 @@
+/* Franja de medios de pago (bloque de la pagina de producto) */
+.pm-banner {
+  margin: 1.4rem 0;
+}
+
+.pm-banner__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* El PNG ya trae su propio marco y respiracion, no lleva borde extra. */
+}

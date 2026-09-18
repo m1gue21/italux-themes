@@ -529,6 +529,10 @@
                   show_pickup_availability: true,
                   dije_upsell_markup: dije_upsell_markup
                 -%}
+              {%- when 'payment_methods' -%}
+                {%- render 'payment-methods-banner', block: block -%}
+              {%- when 'addi_notice' -%}
+                {%- render 'addi-notice', block: block, product: product -%}
               {%- when 'dije_upsell' -%}
                 {%- comment -%} Se renderiza dentro del bloque buy_buttons {%- endcomment -%}
               {%- when 'reviews_carousel' -%}
@@ -983,6 +987,79 @@
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+        }
+      ]
+    },
+    {
+      "type": "addi_notice",
+      "name": "Aviso Addi",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Aviso informativo del theme. Verifica que las condiciones coincidan con lo que Addi ofrece realmente en tu cuenta."
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "info": "Usa [cuotas] donde deba ir el número. Admite <strong> para negritas.",
+          "default": "Paga con <strong>Addi</strong> en hasta <strong>[cuotas] cuotas</strong>."
+        },
+        {
+          "type": "range",
+          "id": "installments",
+          "min": 2,
+          "max": 12,
+          "step": 1,
+          "label": "Número de cuotas",
+          "default": 6
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Texto del enlace",
+          "default": "Pide un cupo"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Enlace"
+        },
+        {
+          "type": "number",
+          "id": "min_amount",
+          "label": "Monto mínimo para mostrarlo",
+          "info": "En pesos, sin decimales. El aviso se oculta en productos por debajo de este precio. Déjalo vacío para mostrarlo siempre."
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo (opcional)",
+          "info": "Si se deja vacío usa el logo de Addi incluido en el theme."
+        }
+      ]
+    },
+    {
+      "type": "payment_methods",
+      "name": "Medios de pago",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Usa la imagen de marca incluida en el theme. Sube una distinta solo si esta tienda maneja otros medios de pago."
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Imagen (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Texto alternativo",
+          "info": "Lo leen los buscadores y los lectores de pantalla.",
+          "default": "Medios de pago aceptados: Visa, Mastercard, PayU, PSE, Nequi, Daviplata y Addi"
         }
       ]
     },
