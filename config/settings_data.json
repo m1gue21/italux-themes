@@ -222,7 +222,10 @@
           "shadow": "#121212"
         }
       }
-    }
+    },
+    "addi_enabled": false,
+    "addi_ally_slug": "",
+    "addi_widget_id": ""
   },
   "presets": {
     "Dawn": {

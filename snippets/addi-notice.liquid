@@ -14,7 +14,14 @@
   assign cuotas = block.settings.installments | default: 6
   assign min_total = block.settings.min_amount | times: 100
   assign price_now = product.selected_or_first_available_variant.price | default: product.price_min | default: 0
+  comment
+    Si el widget oficial de Addi esta activo este aviso sobra: seria el
+    mismo mensaje dos veces, y el de Addi ademas calcula la cuota.
+  endcomment
   assign mostrar = true
+  if settings.addi_enabled
+    assign mostrar = false
+  endif
   if min_total > 0 and price_now < min_total
     assign mostrar = false
   endif

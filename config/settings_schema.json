@@ -1469,5 +1469,90 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Addi",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Widget oficial de Addi. Los valores salen del Portal Addi > Integraciones. Sin slug e id el widget no se carga."
+      },
+      {
+        "type": "checkbox",
+        "id": "addi_enabled",
+        "label": "Activar widget de Addi",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "addi_ally_slug",
+        "label": "Ally slug",
+        "info": "Identificador del comercio en Addi."
+      },
+      {
+        "type": "text",
+        "id": "addi_widget_id",
+        "label": "ID del widget",
+        "info": "El data-id del script que envía Addi."
+      },
+      {
+        "type": "text",
+        "id": "addi_element_reference",
+        "label": "Dónde insertarlo",
+        "info": "Selector CSS. El widget se inserta justo después de ese elemento. Por defecto .price",
+        "default": ".price"
+      },
+      {
+        "type": "header",
+        "content": "Banner en la portada"
+      },
+      {
+        "type": "checkbox",
+        "id": "addi_show_home_banner",
+        "label": "Mostrar banner en la portada",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "addi_banner_id",
+        "label": "ID del banner",
+        "info": "Lo entrega Addi. Sin él no se pinta el banner."
+      },
+      {
+        "type": "text",
+        "id": "addi_banner_element_reference",
+        "label": "Dónde insertar el banner",
+        "info": "Selector CSS."
+      },
+      {
+        "type": "header",
+        "content": "Apariencia"
+      },
+      {
+        "type": "range",
+        "id": "addi_widget_border_radius",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "Radio de esquinas",
+        "default": 10
+      },
+      {
+        "type": "color",
+        "id": "addi_widget_border_color",
+        "label": "Color del borde"
+      },
+      {
+        "type": "color",
+        "id": "addi_widget_font_color",
+        "label": "Color del texto"
+      },
+      {
+        "type": "color",
+        "id": "addi_widget_badge_color",
+        "label": "Color del distintivo"
+      }
+    ]
   }
 ]

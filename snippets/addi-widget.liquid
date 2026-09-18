@@ -1,0 +1,70 @@
+{% comment %}
+  Widget oficial de Addi.
+
+  El wrapper de Addi (shopify-co-widget-wrapper.bundle.min.js):
+  - se localiza a si mismo con script[data-id][data-name="shopifyAddiWidget"]
+  - toma el precio de window.meta.product, no del DOM
+  - data-element-reference solo define DONDE se inserta (default: .price)
+  - inserta <addi-product-widget> despues de ese nodo
+  - en home inserta <addi-home-banner> si data-show-banner es "true"
+
+  Solo se pinta si hay slug e id configurados en Configuracion > Addi.
+{% endcomment %}
+
+{%- liquid
+  assign addi_slug = settings.addi_ally_slug | strip
+  assign addi_id = settings.addi_widget_id | strip
+-%}
+
+{%- if settings.addi_enabled and addi_slug != blank and addi_id != blank -%}
+  <script
+    src="https://s3.amazonaws.com/statics.addi.com/shopify/js/shopify-co-widget-wrapper.bundle.min.js"
+    data-name="shopifyAddiWidget"
+    data-id="{{ addi_id | escape }}"
+    data-ally-slug="{{ addi_slug | escape }}"
+    data-element-reference="{{ settings.addi_element_reference | default: '.price' | escape }}"
+    {% if settings.addi_show_home_banner and settings.addi_banner_id != blank %}
+      data-show-banner="true"
+      data-banner-id="{{ settings.addi_banner_id | escape }}"
+      data-banner-element-reference="{{ settings.addi_banner_element_reference | escape }}"
+    {% endif %}
+    {% if settings.addi_widget_border_color != blank %}widget-border-color="{{ settings.addi_widget_border_color }}"{% endif %}
+    {% if settings.addi_widget_font_color != blank %}widget-font-color="{{ settings.addi_widget_font_color }}"{% endif %}
+    {% if settings.addi_widget_badge_color != blank %}widget-badge-background-color="{{ settings.addi_widget_badge_color }}"{% endif %}
+    widget-border-radius="{{ settings.addi_widget_border_radius | default: 10 }}px"
+    defer
+  ></script>
+
+  {%- comment -%}
+    El wrapper lee el precio una sola vez, al cargar. En productos con
+    variantes de distinto precio la cuota quedaria desactualizada al
+    cambiar de medida, asi que se reescribe con el evento del theme.
+  {%- endcomment -%}
+  <script>
+    (function () {
+      // constants.js y pubsub.js cargan con defer, asi que no hay garantia
+      // de que subscribe exista cuando esto corre. En vez de apostar a un
+      // orden concreto, se reintenta hasta que aparezca.
+      var intentos = 0;
+
+      function enlazar() {
+        if (typeof subscribe !== 'function' || typeof PUB_SUB_EVENTS === 'undefined') {
+          if (++intentos < 50) setTimeout(enlazar, 100);
+          return;
+        }
+
+        window.__addiSyncListo = true;
+
+        subscribe(PUB_SUB_EVENTS.variantChange, function (event) {
+          var variant = event && event.data && event.data.variant;
+          if (!variant || typeof variant.price !== 'number') return;
+
+          var widget = document.querySelector('addi-product-widget');
+          if (widget) widget.setAttribute('price', variant.price / 100);
+        });
+      }
+
+      enlazar();
+    })();
+  </script>
+{%- endif -%}
