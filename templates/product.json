@@ -267,27 +267,11 @@
             "label_whatsapp": "Reseñas por WhatsApp con",
             "label_files": "archivos"
           }
-        },
-        "addi_notice": {
-          "type": "addi_notice",
-          "settings": {
-            "text": "Paga con <strong>Addi</strong> en hasta <strong>[cuotas] cuotas</strong>.",
-            "installments": 6,
-            "link_label": "Pide un cupo",
-            "link_url": ""
-          }
-        },
-        "payment_methods": {
-          "type": "payment_methods",
-          "settings": {
-            "alt": "Medios de pago aceptados: Visa, Mastercard, PayU, PSE, Nequi, Daviplata y Addi"
-          }
         }
       },
       "block_order": [
         "vendor",
         "title",
-        "addi_notice",
         "revie_reviews_por_whatsapp_app_block_GkT7t6",
         "text_ctinyR",
         "price",
@@ -295,7 +279,6 @@
         "quantity_selector",
         "buy_buttons",
         "dije_upsell",
-        "payment_methods",
         "product_reviews_carousel",
         "review_card_1",
         "review_card_2",

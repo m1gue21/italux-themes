@@ -72,19 +72,17 @@
         "slide_bMhadH",
         "slide_LadpX9"
       ],
+      "disabled": true,
       "name": "t:sections.slideshow.presets.name",
       "settings": {
         "layout": "full_bleed",
-        "slide_height": "medium",
+        "slide_height": "large",
         "slider_visual": "dots",
         "auto_rotate": false,
         "change_slides_speed": 3,
         "image_behavior": "none",
         "show_text_below": false,
-        "accessibility_info": "Presentación de diapositivas sobre tu marca",
-        "slide_height_mobile": "small",
-        "image_fit": "contain",
-        "contain_max_width": 1100
+        "accessibility_info": "Presentación de diapositivas sobre tu marca"
       }
     },
     "image_banner": {
@@ -133,8 +131,7 @@
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": false
-      },
-      "disabled": true
+      }
     },
     "featured_collection_44gWWP": {
       "type": "featured-collection",
