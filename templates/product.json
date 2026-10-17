@@ -296,7 +296,6 @@
       "block_order": [
         "vendor",
         "title",
-        "addi_notice",
         "revie_reviews_por_whatsapp_app_block_GkT7t6",
         "text_ctinyR",
         "price",
@@ -304,7 +303,6 @@
         "quantity_selector",
         "buy_buttons",
         "dije_upsell",
-        "payment_methods",
         "product_reviews_carousel",
         "review_card_1",
         "review_card_2",
@@ -321,15 +319,6 @@
         "revie_reviews_por_whatsapp_app_block_2_Akf8x9"
       ],
       "blocks": {
-        "addi_notice": {
-          "settings": {
-            "installments": 6,
-            "link_label": "Pide un cupo",
-            "link_url": "",
-            "text": "Paga con <strong>Addi</strong> en hasta <strong>[cuotas] cuotas</strong>."
-          },
-          "type": "addi_notice"
-        },
         "buy_buttons": {
           "settings": {
             "show_dynamic_checkout": true,
@@ -404,12 +393,6 @@
             "subheading": "Completa tu combo"
           },
           "type": "dije_upsell"
-        },
-        "payment_methods": {
-          "settings": {
-            "alt": "Medios de pago aceptados: Visa, Mastercard, PayU, PSE, Nequi, Daviplata y Addi"
-          },
-          "type": "payment_methods"
         },
         "price": {
           "settings": {},
